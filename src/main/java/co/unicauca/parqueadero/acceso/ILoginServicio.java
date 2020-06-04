@@ -6,8 +6,8 @@
 package co.unicauca.parqueadero.acceso;
 
 /**
+ * Interface que define los servicios con el servidor
  *
- * @author Usuario
  */
 public interface ILoginServicio {
 

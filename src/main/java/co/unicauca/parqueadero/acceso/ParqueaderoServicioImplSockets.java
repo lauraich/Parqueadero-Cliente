@@ -14,10 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Clase que implementa los servicios con al registraduria. Para ello utiliza
- * conexiones con sockets
- *
- * @author Libardo Pantoja
+ * Clase que implementa los servicios. Para ello utiliza conexiones con sockets
  */
 public class ParqueaderoServicioImplSockets implements IParqueaderoServicio {
 
@@ -28,10 +25,10 @@ public class ParqueaderoServicioImplSockets implements IParqueaderoServicio {
     private final int PUERTO = 5000;
 
     /**
-     * Obtiene el registro de un cliente en formato Json
+     * Obtiene un parqueadero en formato Json
      *
-     * @param id identificador del cliente
-     * @return json con el registro del cliente
+     * @param id identificador del parqueadero
+     * @return json con el parqueadero
      * @throws java.lang.Exception cuando no pueda conectarse con el servidor
      */
     @Override
@@ -60,23 +57,54 @@ public class ParqueaderoServicioImplSockets implements IParqueaderoServicio {
         return null;
 
     }
-      public List<Parqueadero> getParqueaderos() throws Exception{
-         List<Parqueadero> list = new ArrayList();
-          return list;
-      }
-     public boolean create(Parqueadero parq) throws Exception{
-         return false;
-     }
-     public boolean actualizar(Parqueadero parq) throws Exception{
-         return false;
-     }
-    public boolean eliminar(String id) throws Exception{
+
+    /**
+     * Obtiene una lista de parqueaderos
+     *
+     * @throws java.lang.Exception cuando no pueda conectarse con el servidor
+     */
+    public List<Parqueadero> getParqueaderos() throws Exception {
+        List<Parqueadero> list = new ArrayList();
+        return list;
+    }
+
+    /**
+     * Crea un parqueadero
+     *
+     * @param parq parqueadero
+     * @return boolean
+     * @throws java.lang.Exception cuando no pueda conectarse con el servidor
+     */
+    public boolean create(Parqueadero parq) throws Exception {
         return false;
     }
+
+    /**
+     * actualiza un parqueadero
+     *
+     * @param parq parqueadero
+     * @return boolean
+     * @throws java.lang.Exception cuando no pueda conectarse con el servidor
+     */
+    public boolean actualizar(Parqueadero parq) throws Exception {
+        return false;
+    }
+
+    /**
+     * elimina un parqueadero
+     *
+     * @param id identificador del parqueadero
+     * @return boolean
+     * @throws java.lang.Exception cuando no pueda conectarse con el servidor
+     */
+    public boolean eliminar(String id) throws Exception {
+        return false;
+    }
+
     /**
      * Deserializa el objeto json y lo convierte en un objeto Parqueadero
      *
-     * 
+     *
      * @param json objeto cliente en formato json
      */
     private void parseToParqueadero(Parqueadero parqueadero, String json) {
@@ -86,11 +114,13 @@ public class ParqueaderoServicioImplSockets implements IParqueaderoServicio {
         parqueadero.setDireccion(properties.getProperty("direccion"));
         parqueadero.setTelefono(properties.getProperty("telefono"));
     }
+
     /**
      * Lee el flujo del socket y lo convierte a String
-     * @param id identificador del cliente
+     *
+     * @param id identificador del parqueadero
      * @return
-     * @throws IOException 
+     * @throws IOException
      */
     private String leerFlujoEntradaSalida(String id) throws IOException {
         String respuesta = "";
@@ -118,11 +148,13 @@ public class ParqueaderoServicioImplSockets implements IParqueaderoServicio {
             Logger.getLogger(ParqueaderoServicioImplSockets.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * Pide conexión con el servidor
+     *
      * @param address
      * @param port
-     * @throws IOException 
+     * @throws IOException
      */
     public void conectar(String address, int port) throws IOException {
         socket = new Socket(address, port);

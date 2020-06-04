@@ -8,8 +8,8 @@ package co.unicauca.parqueadero.acceso;
 import co.unicauca.parqueadero.negocio.clsRegistroParqueo;
 
 /**
+ * Interface que define los servicios con el servidor
  *
- * @author Usuario
  */
 public interface IRegistroParqueo {
 

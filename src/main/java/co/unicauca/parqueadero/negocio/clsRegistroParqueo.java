@@ -1,26 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.parqueadero.negocio;
 
 /**
+ * Representa un registro de parqueo(Entrada-salida) en la base de datos
  *
- * @author Fernando Campo
  */
 public class clsRegistroParqueo {
-    private Vehiculo  atrVehiculo=null;
-    private clsUsuario atrUsuario=null;
-    private String atrCodigoBarras="";
-    private String atrNombresApellidosProp="";
-    private String atrFechaHoraEntrada="";
-    private String atrFechaHoraSalida="";
-    private String atrNumeroCascos="";
-    private String atrNumeroCasillero="";
-    private String atrDejaLlaves="";
-    private String atrObservaciones="";
-    private String atrIdParqueadero="";
+
+    private Vehiculo atrVehiculo = null;
+    private clsUsuario atrUsuario = null;
+    private String atrCodigoBarras = "";
+    private String atrNombresApellidosProp = "";
+    private String atrFechaHoraEntrada = "";
+    private String atrFechaHoraSalida = "";
+    private String atrNumeroCascos = "";
+    private String atrNumeroCasillero = "";
+    private String atrDejaLlaves = "";
+    private String atrObservaciones = "";
+    private String atrIdParqueadero = "";
+
+    /**
+     * Constructor parametrizado
+     *
+     * @param prmUsuario funcionario
+     * @param prmVehiculo vehiculo que va a ingresar o salir
+     * @param prmCodigoBarras codigo de barras
+     * @param prmIdParqueadero identificación del parqueadero
+     * @param prmNombresApellidosProp nombre y apellido del propietario del
+     * vehiculo
+     * @param prmFechaHoraEntrada fecha y hora de entrada
+     * @param prmNumeroCascos numero de cascos
+     * @param prmNumeroCasillero casillero en el cual dejan los cascos
+     * @param prmDejaLlaves deja llaves el cliente
+     * @param prmObservaciones observaciones
+     */
+    public clsRegistroParqueo(clsUsuario prmUsuario, Vehiculo prmVehiculo, String prmCodigoBarras, String prmIdParqueadero, String prmNombresApellidosProp, String prmFechaHoraEntrada, String prmNumeroCascos, String prmNumeroCasillero, String prmDejaLlaves, String prmObservaciones) {
+        this.atrUsuario = prmUsuario;
+        atrVehiculo = prmVehiculo;
+        atrCodigoBarras = prmCodigoBarras;
+        atrIdParqueadero = prmIdParqueadero;
+        this.atrNombresApellidosProp = prmNombresApellidosProp;
+        this.atrFechaHoraEntrada = prmFechaHoraEntrada;
+        this.atrNumeroCascos = prmNumeroCascos;
+        this.atrNumeroCasillero = prmNumeroCasillero;
+        this.atrDejaLlaves = prmDejaLlaves;
+        atrObservaciones = prmObservaciones;
+    }
 
     public String getIdParqueadero() {
         return atrIdParqueadero;
@@ -38,19 +62,6 @@ public class clsRegistroParqueo {
         this.atrObservaciones = prmObservaciones;
     }
 
-    public clsRegistroParqueo(clsUsuario prmUsuario, Vehiculo prmVehiculo, String prmCodigoBarras, String prmIdParqueadero, String prmNombresApellidosProp, String prmFechaHoraEntrada, String prmNumeroCascos, String prmNumeroCasillero, String prmDejaLlaves, String prmObservaciones) {
-        this.atrUsuario = prmUsuario;
-        atrVehiculo=prmVehiculo;
-        atrCodigoBarras=prmCodigoBarras;
-        atrIdParqueadero=prmIdParqueadero;
-        this.atrNombresApellidosProp = prmNombresApellidosProp;
-        this.atrFechaHoraEntrada = prmFechaHoraEntrada;
-        this.atrNumeroCascos = prmNumeroCascos;
-        this.atrNumeroCasillero = prmNumeroCasillero;
-        this.atrDejaLlaves = prmDejaLlaves;
-        atrObservaciones=prmObservaciones;
-    }
-    
     public String getDejaLlaves() {
         return atrDejaLlaves;
     }
@@ -58,7 +69,6 @@ public class clsRegistroParqueo {
     public void setDejaLlaves(String prmDejaLlaves) {
         this.atrDejaLlaves = prmDejaLlaves;
     }
-    
 
     public Vehiculo getVehiculo() {
         return atrVehiculo;
@@ -83,9 +93,6 @@ public class clsRegistroParqueo {
     public void setAtrCodigoBarras(String prmCodigoBarras) {
         this.atrCodigoBarras = prmCodigoBarras;
     }
-
-    
-    
 
     public String getNombresApellidosProp() {
         return atrNombresApellidosProp;

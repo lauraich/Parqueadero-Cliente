@@ -12,13 +12,12 @@ import co.unicauca.parqueadero.negocio.Vehiculo;
 import co.unicauca.parqueadero.negocio.clsRegistroParqueo;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
 import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
+ * Interfaz gráfica de Registrar Entrada de vehiculo
  *
- * @author Usuario
  */
 public class GUIRegistrarEntrada extends javax.swing.JFrame {
 
@@ -309,8 +308,8 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
         Boolean dejaLlaves = chbLlaves1.getState();
 
         GestorEntrada gestor = new GestorEntrada();
-        if(casillero.equals("")){
-            casillero="null";
+        if (casillero.equals("")) {
+            casillero = "null";
         }
         if (chbUno.getState()) {
             numeroCascos = "1";
@@ -330,7 +329,7 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
         try {
             if (placa.equals("") || codigo.equals("") || tipoVehiculo.equals("") || fechaHoraEntrada.equals("")) {
                 JOptionPane.showMessageDialog(null, "Debe diligenciar el formulario correctamente.");
-            } else if (gestor.registrarEntrada(new clsRegistroParqueo(usu, vehiculo, codigo,"1", propietario, fechaHoraEntrada, numeroCascos, casillero, dejaLlaves.toString(), Observaciones))) {
+            } else if (gestor.registrarEntrada(new clsRegistroParqueo(usu, vehiculo, codigo, "1", propietario, fechaHoraEntrada, numeroCascos, casillero, dejaLlaves.toString(), Observaciones))) {
                 JOptionPane.showMessageDialog(null, "Entrada registrada correctamente.");
                 this.dispose();
             } else {

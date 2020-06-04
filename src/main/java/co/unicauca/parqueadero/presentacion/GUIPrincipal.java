@@ -8,9 +8,9 @@ package co.unicauca.parqueadero.presentacion;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import co.unicauca.parqueadero.presentacion.GUIRegistrarEntrada;
+
 /**
- *
- * @author Usuario
+ * Interfaz gráfica Principal
  */
 public class GUIPrincipal extends javax.swing.JFrame {
 
@@ -19,14 +19,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
      */
     public GUIPrincipal() {
         initComponents();
-        
+
     }
+
     public GUIPrincipal(String prmUser) {
         initComponents();
         lblAdmin.setText(prmUser);
         lblAdmin.setName(prmUser);
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -159,7 +161,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-       GUIRegistrarEntrada registrar = new GUIRegistrarEntrada();
+        GUIRegistrarEntrada registrar = new GUIRegistrarEntrada();
         registrar.setVisible(true);
         registrar.pack();
         registrar.setLocationRelativeTo(null);
@@ -205,7 +207,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new GUIPrincipal().setVisible(true);
-                 
+
             }
         });
     }

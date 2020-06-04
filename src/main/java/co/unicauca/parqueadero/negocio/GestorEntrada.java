@@ -1,23 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package co.unicauca.parqueadero.negocio;
+
 import co.unicauca.parqueadero.acceso.EntradaServicioImplSockets;
 import co.unicauca.parqueadero.acceso.IRegistroParqueo;
+
 /**
+ * Fachada con la que se comunica la capa de presentación
  *
- * @author Usuario
  */
 public class GestorEntrada {
+
     IRegistroParqueo RegistroEntrada;
 
+    /**
+     * Constructor
+     */
     public GestorEntrada() {
         RegistroEntrada = new EntradaServicioImplSockets();
     }
-    public boolean registrarEntrada(clsRegistroParqueo registro) throws Exception{
+
+    /**
+     * registra la entrada de un cliente
+     *
+     * @param registro registro de la entrada
+     * @return Boolean que indica si pudo realizar el registro de la entrada
+     * @throws java.lang.Exception la excepcio se lanza cuando no logra conexión
+     * con el servidor
+     */
+    public boolean registrarEntrada(clsRegistroParqueo registro) throws Exception {
         return RegistroEntrada.registrarEntrada(registro);
     }
-    
+
 }

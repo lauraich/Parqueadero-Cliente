@@ -14,8 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Clase que implementa los servicios . Para ello utiliza conexiones con sockets
  *
- * @author Usuario
  */
 public class EntradaServicioImplSockets implements IRegistroParqueo {
 
@@ -83,6 +83,9 @@ public class EntradaServicioImplSockets implements IRegistroParqueo {
         entradaDecorada.close();
     }
 
+    /**
+     * Desconecta la conexión
+     */
     private void desconectar() {
         try {
             socket.close();

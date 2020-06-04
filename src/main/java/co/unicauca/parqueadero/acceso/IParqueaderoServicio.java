@@ -4,7 +4,7 @@ import co.unicauca.parqueadero.negocio.Parqueadero;
 import java.util.List;
 
 /**
- * Interface que define los servicios con el servidor Libardo Pantoja
+ * Interface que define los servicios con el servidor
  */
 public interface IParqueaderoServicio {
 

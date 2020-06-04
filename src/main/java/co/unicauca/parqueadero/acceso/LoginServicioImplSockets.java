@@ -15,25 +15,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Clase que implementa los servicios . Para ello utiliza conexiones con sockets
  *
- * @author Usuario
  */
-public class LoginServicioImplSockets implements ILoginServicio{
-    
+public class LoginServicioImplSockets implements ILoginServicio {
+
     private Socket socket = null;
     private Scanner entradaDecorada;
     private PrintStream salidaDecorada;
     private final String IP_SERVIDOR = "localhost";
     private final int PUERTO = 5000;
 
-   
+    /**
+     * Obtiene el login de un cliente en formato Json
+     *
+     * @param usuario nombre del usuario
+     * @param contraseña contraseña del usuario
+     */
     @Override
-    public boolean login(String usuario,String contraseña) throws Exception {
+    public boolean login(String usuario, String contraseña) throws Exception {
 
         String jsonCliente = null;
         try {
             conectar(IP_SERVIDOR, PUERTO);
-            jsonCliente = leerFlujoEntradaSalida(usuario,contraseña);
+            jsonCliente = leerFlujoEntradaSalida(usuario, contraseña);
             cerrarFlujos();
             desconectar();
 
@@ -51,14 +56,20 @@ public class LoginServicioImplSockets implements ILoginServicio{
 
     }
 
-   
-    private String leerFlujoEntradaSalida(String usuario,String contraseña) throws IOException {
+    /**
+     * Lee el flujo del socket y lo convierte a String
+     *
+     * @param id identificador del cliente
+     * @return
+     * @throws IOException
+     */
+    private String leerFlujoEntradaSalida(String usuario, String contraseña) throws IOException {
         String respuesta = "";
         entradaDecorada = new Scanner(socket.getInputStream());
         salidaDecorada = new PrintStream(socket.getOutputStream());
         salidaDecorada.flush();
         // Usando el protocolo de comunicación
-        salidaDecorada.println("login|" + usuario+"|" + contraseña);
+        salidaDecorada.println("login|" + usuario + "|" + contraseña);
         if (entradaDecorada.hasNextLine()) {
             respuesta = entradaDecorada.nextLine();
         }
@@ -71,6 +82,9 @@ public class LoginServicioImplSockets implements ILoginServicio{
         entradaDecorada.close();
     }
 
+    /**
+     * Desconecta la conexión
+     */
     private void desconectar() {
         try {
             socket.close();
@@ -78,11 +92,13 @@ public class LoginServicioImplSockets implements ILoginServicio{
             Logger.getLogger(LoginServicioImplSockets.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     /**
      * Pide conexión con el servidor
+     *
      * @param address
      * @param port
-     * @throws IOException 
+     * @throws IOException
      */
     public void conectar(String address, int port) throws IOException {
         socket = new Socket(address, port);

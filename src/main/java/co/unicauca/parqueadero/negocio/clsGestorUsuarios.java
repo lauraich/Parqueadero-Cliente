@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.parqueadero.negocio;
 
 /**
+ * Fachada con la que se comunica la capa de presentación
  *
- * @author Fernando Campo
  */
 public class clsGestorUsuarios {
-    
+
 }

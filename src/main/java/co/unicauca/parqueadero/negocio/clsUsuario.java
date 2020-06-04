@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.parqueadero.negocio;
 
 /**
+ * Representa un usuario en la base de datos
  *
- * @author Fernando Campo
  */
-
-
 public class clsUsuario {
-    
+
     private String atrCedula;
     private String atrNombres;
     private String atrApellidos;
@@ -22,7 +15,17 @@ public class clsUsuario {
 
     public clsUsuario() {
     }
-    
+
+    /**
+     * Constructor parametrizado
+     *
+     * @param prmCedula cedula
+     * @param prmNombres nombres
+     * @param prmApellidos apellidos
+     * @param prmRol rol del usuario
+     * @param prmLogin login del usuario
+     * @param prmPassword contraseña
+     */
     public clsUsuario(String prmCedula, String prmNombres, String prmApellidos, String prmRol, String prmLogin, String prmPassword) {
         atrCedula = prmCedula;
         atrNombres = prmNombres;
@@ -79,12 +82,15 @@ public class clsUsuario {
     public void setAtrPassword(String prmPassword) {
         this.atrPassword = prmPassword;
     }
-    public boolean registrarEntrada(){
+
+    public boolean registrarEntrada() {
         return false;
     }
-    public boolean validarPasswod(String prmPassword){
-        if(atrPassword.endsWith(prmPassword))
+
+    public boolean validarPasswod(String prmPassword) {
+        if (atrPassword.endsWith(prmPassword)) {
             return true;
+        }
         return false;
     }
 }

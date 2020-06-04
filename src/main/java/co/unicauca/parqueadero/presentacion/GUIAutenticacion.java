@@ -11,8 +11,8 @@ import co.unicauca.parqueadero.transversal.Seguridad;
 import javax.swing.JOptionPane;
 
 /**
+ * Interfaz gráfica de Autenticación
  *
- * @author Usuario
  */
 public class GUIAutenticacion extends javax.swing.JFrame {
 
@@ -221,15 +221,15 @@ public class GUIAutenticacion extends javax.swing.JFrame {
         Seguridad seg = new Seguridad();
         try {
             if (seg.login(tfUsuario.getText().trim(), tfContraseña.getText().trim())) {
-                System.out.println("Usuario: "+tfUsuario.getText());
+                System.out.println("Usuario: " + tfUsuario.getText());
                 GUIPrincipal principal = new GUIPrincipal(tfUsuario.getText().trim());
                 principal.setVisible(true);
                 //principal.pack();
                 principal.setLocationRelativeTo(null);
                 principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(null,"Credenciales Invalidos");
+            } else {
+                JOptionPane.showMessageDialog(null, "Credenciales Invalidos");
             }
         } catch (Exception e) {
         }

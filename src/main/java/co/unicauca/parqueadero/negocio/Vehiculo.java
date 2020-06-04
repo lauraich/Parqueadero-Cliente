@@ -1,14 +1,20 @@
-
 package co.unicauca.parqueadero.negocio;
 
 /**
+ * Representa un vehiculo en la base de datos
  *
- * @author Usuario
  */
 public class Vehiculo {
+
     private String placa;
     private String tipoVehiculo;
 
+    /**
+     * Constructor parametrizado
+     *
+     * @param placa placa del vehiculo
+     * @param tipoVehiculo tipo de vehiculo
+     */
     public Vehiculo(String placa, String tipoVehiculo) {
         this.placa = placa;
         this.tipoVehiculo = tipoVehiculo;
@@ -29,5 +35,5 @@ public class Vehiculo {
     public void setTipoVehiculo(String tipoVehiculo) {
         this.tipoVehiculo = tipoVehiculo;
     }
-    
+
 }

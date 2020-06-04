@@ -6,8 +6,7 @@
 package co.unicauca.parqueadero.presentacion;
 
 /**
- *
- * @author Usuario
+ * Interfaz gráfica de Registrar Parqueadero
  */
 public class GUIRegistrarParqueadero extends javax.swing.JFrame {
 
