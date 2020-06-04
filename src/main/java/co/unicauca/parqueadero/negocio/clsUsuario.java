@@ -1,17 +1,19 @@
 package co.unicauca.parqueadero.negocio;
 
+import javax.print.DocFlavor;
+
 /**
  * Representa un usuario en la base de datos
  *
  */
 public class clsUsuario {
 
-    private String atrCedula;
-    private String atrNombres;
-    private String atrApellidos;
-    private String atrRol;
-    private String atrLogin;
-    private String atrPassword;
+    private String atrCedula="";
+    private String atrNombres="";
+    private String atrApellidos="";
+    private String atrRol="";
+    private String atrLogin="";
+    private String atrPassword="";
 
     public clsUsuario() {
     }

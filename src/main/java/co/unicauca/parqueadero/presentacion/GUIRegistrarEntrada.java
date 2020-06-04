@@ -319,12 +319,12 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
             numeroCascos = "0";
         }
         clsUsuario usu = new clsUsuario();
-        usu.setAtrCedula("34765126");
-        usu.setAtrNombres("Jose");
-        usu.setAtrApellidos("Cardenas");
-        usu.setAtrLogin("jose");
+        usu.setAtrCedula("1005868290");
+        usu.setAtrNombres("Juan Fernando");
+        usu.setAtrApellidos("Campo Mosquera");
+        usu.setAtrLogin("fernando");
         usu.setAtrRol("1");
-        usu.setAtrPassword("123");
+        usu.setAtrPassword("123321");
         Vehiculo vehiculo = new Vehiculo(placa, tipoVehiculo);
         try {
             if (placa.equals("") || codigo.equals("") || tipoVehiculo.equals("") || fechaHoraEntrada.equals("")) {
