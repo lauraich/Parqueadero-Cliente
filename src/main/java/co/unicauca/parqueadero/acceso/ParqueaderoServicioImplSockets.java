@@ -97,7 +97,7 @@ public class ParqueaderoServicioImplSockets implements IParqueaderoServicio {
         String jsonCliente = null;
         try {
             conectar(IP_SERVIDOR, PUERTO);
-            jsonCliente = leerFlujoEntradaSalida("getParqueaderosUsuario|", cedula);
+            jsonCliente = leerFlujoEntradaSalida("usuariosParqueadero|", cedula);
             cerrarFlujos();
             desconectar();
 
