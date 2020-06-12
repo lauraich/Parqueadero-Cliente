@@ -17,7 +17,6 @@ import java.util.Properties;
  * @author Fernando Campo
  */
 public class JSONServices {
-    private clsGestorUsuarios atrGestorUsuarios=new clsGestorUsuarios();
     private static JSONServices atrParseToJSON;
     public static JSONServices getInstancia(){
         if(atrParseToJSON==null){
