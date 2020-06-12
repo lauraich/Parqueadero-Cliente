@@ -5,6 +5,11 @@
  */
 package co.unicauca.parqueadero.presentacion;
 
+import co.unicauca.parqueadero.negocio.GestorParqueadero;
+import co.unicauca.parqueadero.transversal.Seguridad;
+import co.unicauca.parqueadero.negocio.Parqueadero;
+import javax.swing.JOptionPane;
+
 /**
  * Interfaz gráfica de Registrar Parqueadero
  */
@@ -38,6 +43,10 @@ public class GUIRegistrarParqueadero extends javax.swing.JFrame {
         tfTelefono = new javax.swing.JTextField();
         btnRegistrarParqCancel = new javax.swing.JButton();
         btnRegistrarParqueadero = new javax.swing.JButton();
+        lblUsuario = new javax.swing.JLabel();
+        tfUsuario = new javax.swing.JTextField();
+        lblContraseña = new javax.swing.JLabel();
+        tfContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,7 +64,7 @@ public class GUIRegistrarParqueadero extends javax.swing.JFrame {
             .addGroup(pnlRegistrarParqueaderoHeadLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblRegistrarParqueadero)
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addContainerGap(325, Short.MAX_VALUE))
         );
         pnlRegistrarParqueaderoHeadLayout.setVerticalGroup(
             pnlRegistrarParqueaderoHeadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -65,7 +74,7 @@ public class GUIRegistrarParqueadero extends javax.swing.JFrame {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        getContentPane().add(pnlRegistrarParqueaderoHead, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(pnlRegistrarParqueaderoHead, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, -1));
 
         pnlRegistrarParqueaderoBody.setBackground(new java.awt.Color(10, 61, 98));
         pnlRegistrarParqueaderoBody.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,26 +87,26 @@ public class GUIRegistrarParqueadero extends javax.swing.JFrame {
         lblNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(255, 255, 255));
         lblNombre.setText("Nombre:");
-        pnlRegistrarParqueaderoBody.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
+        pnlRegistrarParqueaderoBody.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
 
         tfNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        pnlRegistrarParqueaderoBody.add(tfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, 280, -1));
+        pnlRegistrarParqueaderoBody.add(tfNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 280, -1));
 
         lblDireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblDireccion.setForeground(new java.awt.Color(255, 255, 255));
         lblDireccion.setText("Dirección:");
-        pnlRegistrarParqueaderoBody.add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 160, -1, -1));
+        pnlRegistrarParqueaderoBody.add(lblDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, -1, -1));
 
         tfDireccion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        pnlRegistrarParqueaderoBody.add(tfDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 160, 280, -1));
+        pnlRegistrarParqueaderoBody.add(tfDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 280, -1));
 
         lblTelefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
         lblTelefono.setText("Telefono:");
-        pnlRegistrarParqueaderoBody.add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
+        pnlRegistrarParqueaderoBody.add(lblTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
 
         tfTelefono.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        pnlRegistrarParqueaderoBody.add(tfTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 280, -1));
+        pnlRegistrarParqueaderoBody.add(tfTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 280, -1));
 
         btnRegistrarParqCancel.setBackground(new java.awt.Color(255, 94, 87));
         btnRegistrarParqCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -108,15 +117,34 @@ public class GUIRegistrarParqueadero extends javax.swing.JFrame {
                 btnRegistrarParqCancelMouseClicked(evt);
             }
         });
-        pnlRegistrarParqueaderoBody.add(btnRegistrarParqCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
+        pnlRegistrarParqueaderoBody.add(btnRegistrarParqCancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, -1, -1));
 
         btnRegistrarParqueadero.setBackground(new java.awt.Color(30, 144, 255));
         btnRegistrarParqueadero.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnRegistrarParqueadero.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrarParqueadero.setText("Registrar");
-        pnlRegistrarParqueaderoBody.add(btnRegistrarParqueadero, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 270, -1, -1));
+        btnRegistrarParqueadero.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarParqueaderoMouseClicked(evt);
+            }
+        });
+        pnlRegistrarParqueaderoBody.add(btnRegistrarParqueadero, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 310, -1, -1));
 
-        getContentPane().add(pnlRegistrarParqueaderoBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 570, 320));
+        lblUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setText("Usuario:");
+        pnlRegistrarParqueaderoBody.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
+
+        tfUsuario.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        pnlRegistrarParqueaderoBody.add(tfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 280, -1));
+
+        lblContraseña.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblContraseña.setForeground(new java.awt.Color(255, 255, 255));
+        lblContraseña.setText("Contraseña:");
+        pnlRegistrarParqueaderoBody.add(lblContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, -1, -1));
+        pnlRegistrarParqueaderoBody.add(tfContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 280, -1));
+
+        getContentPane().add(pnlRegistrarParqueaderoBody, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 540, 350));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -124,6 +152,31 @@ public class GUIRegistrarParqueadero extends javax.swing.JFrame {
     private void btnRegistrarParqCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarParqCancelMouseClicked
         this.dispose();
     }//GEN-LAST:event_btnRegistrarParqCancelMouseClicked
+
+    private void btnRegistrarParqueaderoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarParqueaderoMouseClicked
+        String nombre = tfNombre.getText().trim();
+        String direccion = tfDireccion.getText().trim();
+        String telefono = tfTelefono.getText().trim();
+        String usuario = tfUsuario.getText().trim();
+        String contraseña = tfContraseña.getText().trim();
+        Seguridad seg = new Seguridad();
+        GestorParqueadero gestor = new GestorParqueadero();
+        try {
+            if (!nombre.equals("") && !direccion.equals("") && !telefono.equals("") && !usuario.equals("") && !contraseña.equals("")) {
+                if (seg.login(usuario, contraseña)) {
+                   if( gestor.create(new Parqueadero(nombre,direccion,telefono))){
+                        JOptionPane.showMessageDialog(null, "Parqueadero Registrado Correctamente");
+                   }
+                }else{
+                     JOptionPane.showMessageDialog(null, "Usuario administrador Invalido");
+                }
+            }else{
+                 JOptionPane.showMessageDialog(null, "Debe diligenciar el formulario correctamente");
+            }
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_btnRegistrarParqueaderoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -163,15 +216,19 @@ public class GUIRegistrarParqueadero extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrarParqCancel;
     private javax.swing.JButton btnRegistrarParqueadero;
+    private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblInfo;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRegistrarParqueadero;
     private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblUsuario;
     private javax.swing.JPanel pnlRegistrarParqueaderoBody;
     private javax.swing.JPanel pnlRegistrarParqueaderoHead;
+    private javax.swing.JPasswordField tfContraseña;
     private javax.swing.JTextField tfDireccion;
     private javax.swing.JTextField tfNombre;
     private javax.swing.JTextField tfTelefono;
+    private javax.swing.JTextField tfUsuario;
     // End of variables declaration//GEN-END:variables
 }

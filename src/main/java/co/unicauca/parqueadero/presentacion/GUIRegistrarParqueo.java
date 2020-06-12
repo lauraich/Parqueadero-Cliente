@@ -6,9 +6,11 @@
 package co.unicauca.parqueadero.presentacion;
 
 import co.unicauca.parqueadero.negocio.clsUsuario;
-import co.unicauca.parqueadero.negocio.GestorEntrada;
+import co.unicauca.parqueadero.negocio.GestorParqueo;
 import co.unicauca.parqueadero.negocio.Parqueadero;
 import co.unicauca.parqueadero.negocio.Vehiculo;
+import co.unicauca.parqueadero.negocio.clsFacturacion;
+import co.unicauca.parqueadero.negocio.clsGestorFacturacion;
 import co.unicauca.parqueadero.negocio.clsRegistroParqueo;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -19,15 +21,21 @@ import javax.swing.JOptionPane;
  * Interfaz gráfica de Registrar Entrada de vehiculo
  *
  */
-public class GUIRegistrarEntrada extends javax.swing.JFrame {
+public class GUIRegistrarParqueo extends javax.swing.JFrame {
+
+    clsRegistroParqueo atrRegistro;
+    String atrDias ="";
+    String atrHoras = "";
+    String atrMinutos = "";
 
     /**
      * Creates new form GUIRegistrarEntrada
      */
-    public GUIRegistrarEntrada() {
+    public GUIRegistrarParqueo() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        ocultarEntrada();
+        ocultarSalida();
     }
 
     /**
@@ -53,7 +61,7 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
         cbTipoVehiculo = new javax.swing.JComboBox<>();
         lblPropietario1 = new javax.swing.JLabel();
         tfPropietario = new javax.swing.JTextField();
-        lblFechaHoraEntrada1 = new javax.swing.JLabel();
+        lblFechaHoraSalida = new javax.swing.JLabel();
         tfFechaHoraEntrada = new java.awt.TextField();
         chbUno = new java.awt.Checkbox();
         chbDos = new java.awt.Checkbox();
@@ -64,6 +72,17 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
         chbLlaves1 = new java.awt.Checkbox();
         lblCodigo = new javax.swing.JLabel();
         tfCodigo = new javax.swing.JTextField();
+        lblFechaHoraEntrada = new javax.swing.JLabel();
+        tfFechaHoraSalida = new java.awt.TextField();
+        lblTiempo = new javax.swing.JLabel();
+        tfTiempo = new java.awt.TextField();
+        tfTipoVehiculo = new javax.swing.JTextField();
+        tfNumCascos = new javax.swing.JTextField();
+        lblValorPagar = new javax.swing.JLabel();
+        tfValorPagar = new javax.swing.JTextField();
+        chbDejaFicha = new java.awt.Checkbox();
+        lblRecargo = new java.awt.Label();
+        btnRegistrarSalida = new javax.swing.JButton();
         rbCodigo = new javax.swing.JRadioButton();
         rbPlaca = new javax.swing.JRadioButton();
 
@@ -97,7 +116,7 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
         lblNumCascos.setForeground(new java.awt.Color(247, 241, 227));
         lblNumCascos.setText("Número de Cascos:");
         lblNumCascos.setEnabled(false);
-        jPanel3.add(lblNumCascos, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 235, 135, -1));
+        jPanel3.add(lblNumCascos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 135, -1));
 
         btnRegistrar1.setBackground(new java.awt.Color(30, 144, 255));
         btnRegistrar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -108,7 +127,7 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
                 btnRegistrar1MouseClicked(evt);
             }
         });
-        jPanel3.add(btnRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 115, -1));
+        jPanel3.add(btnRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, 115, -1));
 
         btnRegistrarCancel1.setBackground(new java.awt.Color(255, 94, 87));
         btnRegistrarCancel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -119,7 +138,7 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
                 btnRegistrarCancel1MouseClicked(evt);
             }
         });
-        jPanel3.add(btnRegistrarCancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 118, -1));
+        jPanel3.add(btnRegistrarCancel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 440, 118, -1));
 
         lblPlaca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblPlaca.setForeground(new java.awt.Color(247, 241, 227));
@@ -143,18 +162,18 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
                 cbTipoVehiculoItemStateChanged(evt);
             }
         });
-        jPanel3.add(cbTipoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 81, 104, -1));
+        jPanel3.add(cbTipoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 104, -1));
 
         lblPropietario1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblPropietario1.setForeground(new java.awt.Color(247, 241, 227));
         lblPropietario1.setText("Nombre y Apellido propietario(opcional):");
         jPanel3.add(lblPropietario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 133, -1, -1));
-        jPanel3.add(tfPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 133, 372, -1));
+        jPanel3.add(tfPropietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 133, 380, -1));
 
-        lblFechaHoraEntrada1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblFechaHoraEntrada1.setForeground(new java.awt.Color(247, 241, 227));
-        lblFechaHoraEntrada1.setText("Fecha y Hora de Entrada:");
-        jPanel3.add(lblFechaHoraEntrada1, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 174, -1, -1));
+        lblFechaHoraSalida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblFechaHoraSalida.setForeground(new java.awt.Color(247, 241, 227));
+        lblFechaHoraSalida.setText("Fecha y Hora de Salida:");
+        jPanel3.add(lblFechaHoraSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, -1, -1));
 
         tfFechaHoraEntrada.setEditable(false);
         tfFechaHoraEntrada.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -162,7 +181,7 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
                 tfFechaHoraEntradaMouseClicked(evt);
             }
         });
-        jPanel3.add(tfFechaHoraEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 171, 196, -1));
+        jPanel3.add(tfFechaHoraEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 170, -1));
 
         chbUno.setEnabled(false);
         chbUno.setForeground(new java.awt.Color(255, 255, 255));
@@ -188,11 +207,11 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
         lblCasillero1.setForeground(new java.awt.Color(247, 241, 227));
         lblCasillero1.setText("Casillero No:");
         lblCasillero1.setEnabled(false);
-        jPanel3.add(lblCasillero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 235, -1, -1));
+        jPanel3.add(lblCasillero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, -1, -1));
 
         tfCasillero1.setEditable(false);
         tfCasillero1.setEnabled(false);
-        jPanel3.add(tfCasillero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(457, 235, 33, 28));
+        jPanel3.add(tfCasillero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 33, 28));
 
         lblObservaciones1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblObservaciones1.setForeground(new java.awt.Color(247, 241, 227));
@@ -211,6 +230,60 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
 
         tfCodigo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jPanel3.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 27, 149, -1));
+
+        lblFechaHoraEntrada.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblFechaHoraEntrada.setForeground(new java.awt.Color(247, 241, 227));
+        lblFechaHoraEntrada.setText("Fecha y Hora de Entrada:");
+        jPanel3.add(lblFechaHoraEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 174, -1, -1));
+
+        tfFechaHoraSalida.setEditable(false);
+        tfFechaHoraSalida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tfFechaHoraSalidaMouseClicked(evt);
+            }
+        });
+        jPanel3.add(tfFechaHoraSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 170, -1));
+
+        lblTiempo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblTiempo.setForeground(new java.awt.Color(247, 241, 227));
+        lblTiempo.setText("Tiempo Transcurrido:");
+        jPanel3.add(lblTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 210, 140, -1));
+
+        tfTiempo.setEditable(false);
+        jPanel3.add(tfTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, 170, -1));
+        jPanel3.add(tfTipoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 60, -1));
+        jPanel3.add(tfNumCascos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 40, -1));
+
+        lblValorPagar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblValorPagar.setForeground(new java.awt.Color(247, 241, 227));
+        lblValorPagar.setText("Valor a Pagar:");
+        jPanel3.add(lblValorPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 90, -1));
+        jPanel3.add(tfValorPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 170, -1));
+
+        chbDejaFicha.setForeground(new java.awt.Color(255, 255, 255));
+        chbDejaFicha.setLabel("Entrega Ficha");
+        chbDejaFicha.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chbDejaFichaItemStateChanged(evt);
+            }
+        });
+        jPanel3.add(chbDejaFicha, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
+
+        lblRecargo.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        lblRecargo.setForeground(new java.awt.Color(255, 255, 255));
+        lblRecargo.setText("Recargo con valor de $5.000");
+        jPanel3.add(lblRecargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, -1, -1));
+
+        btnRegistrarSalida.setBackground(new java.awt.Color(30, 144, 255));
+        btnRegistrarSalida.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnRegistrarSalida.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrarSalida.setText("Guardar");
+        btnRegistrarSalida.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarSalidaMouseClicked(evt);
+            }
+        });
+        jPanel3.add(btnRegistrarSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, 115, -1));
 
         rbCodigo.setBackground(new java.awt.Color(250, 152, 58));
         rbCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -240,7 +313,7 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
             .addGroup(pnlRegistrarEntradaLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(lblRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
                 .addComponent(rbCodigo)
                 .addGap(18, 18, 18)
                 .addComponent(rbPlaca)
@@ -249,7 +322,7 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(btnBuscar)
                 .addGap(101, 101, 101))
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlRegistrarEntradaLayout.setVerticalGroup(
             pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +336,7 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
                         .addComponent(rbPlaca))
                     .addComponent(lblRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
                 .addGap(5, 5, 5))
         );
 
@@ -307,7 +380,7 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
 
         Boolean dejaLlaves = chbLlaves1.getState();
 
-        GestorEntrada gestor = new GestorEntrada();
+        GestorParqueo gestor = new GestorParqueo();
         if (casillero.equals("")) {
             casillero = "null";
         }
@@ -351,9 +424,174 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
     }//GEN-LAST:event_tfFechaHoraEntradaMouseClicked
 
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+        GestorParqueo gestor = new GestorParqueo();
+        try {
+            if (rbPlaca.isSelected()) {
+                atrRegistro = gestor.buscarXplaca(tfCodigoPlaca.getText());
+            } else {
+                atrRegistro = gestor.buscarXcodigo(tfCodigoPlaca.getText());
+            }
+            if (atrRegistro == null) {
+                ocultarSalida();
+                desplegarEntrada();
+            } else {
+                ocultarEntrada();
+                desplegarSalida();
+                rellenarSalida();
+            }
+        } catch (Exception e) {
+        }
         tfPlaca.setText(tfCodigoPlaca.getText());
-
     }//GEN-LAST:event_btnBuscarMouseClicked
+
+    private void rellenarSalida() {
+        tfFechaHoraEntrada.setText(atrRegistro.getFechaHoraEntrada());
+        tfCodigo.setText(atrRegistro.getCodigoBarras());
+        tfPropietario.setText(atrRegistro.getNombresApellidosProp());
+        tfTipoVehiculo.setText(atrRegistro.getVehiculo().getTipoVehiculo());
+        tfNumCascos.setText(atrRegistro.getNumeroCascos());
+        if (!atrRegistro.getNumeroCasillero().equals("")) {
+            tfCasillero1.setText(atrRegistro.getNumeroCasillero());
+        } else {
+            tfCasillero1.setText("");
+        }
+        tfObservaciones.setText(atrRegistro.getObservaciones());
+        if (atrRegistro.getDejaLlaves().equals("0")) {
+            chbLlaves1.setState(false);
+        } else {
+            chbLlaves1.setState(true);
+        }
+
+    }
+
+    private void desplegarSalida() {
+        lblRegistrar.setText("Registrar Salida");
+        lblPlaca.setVisible(true);
+        tfPlaca.setText(tfCodigoPlaca.getText());
+        tfPlaca.setEnabled(false);
+        tfPlaca.setVisible(true);
+        lblCodigo.setVisible(true);
+        tfCodigo.setVisible(true);
+        tfCodigo.setEnabled(false);
+        lblTipoVehiculo1.setVisible(true);
+        tfTipoVehiculo.setVisible(true);
+        tfTipoVehiculo.setEnabled(false);
+        lblPropietario1.setVisible(true);
+        tfPropietario.setVisible(true);
+        tfPropietario.setEnabled(false);
+        lblFechaHoraEntrada.setVisible(true);
+        tfFechaHoraEntrada.setVisible(true);
+        tfFechaHoraEntrada.setEnabled(false);
+        lblFechaHoraSalida.setVisible(true);
+        tfFechaHoraSalida.setVisible(true);
+        lblTiempo.setVisible(true);
+        tfTiempo.setVisible(true);
+        lblNumCascos.setVisible(true);
+        tfNumCascos.setVisible(true);
+        tfNumCascos.setEnabled(false);
+        lblCasillero1.setVisible(true);
+        tfCasillero1.setVisible(true);
+        tfCasillero1.setEnabled(false);
+        lblObservaciones1.setVisible(true);
+        tfObservaciones.setVisible(true);
+        tfObservaciones.setEnabled(false);
+        chbLlaves1.setVisible(true);
+        chbLlaves1.setEnabled(false);
+        chbDejaFicha.setVisible(true);
+        lblValorPagar.setVisible(true);
+        tfValorPagar.setVisible(true);
+        lblRecargo.setVisible(true);
+        btnRegistrarSalida.setVisible(true);
+        btnRegistrarCancel1.setVisible(true);
+    }
+
+    private void ocultarSalida() {
+
+        lblPlaca.setVisible(false);
+        tfPlaca.setVisible(false);
+        lblCodigo.setVisible(false);
+        tfCodigo.setVisible(false);
+        lblTipoVehiculo1.setVisible(false);
+        tfTipoVehiculo.setVisible(false);
+        lblPropietario1.setVisible(false);
+        tfPropietario.setVisible(false);
+        lblFechaHoraEntrada.setVisible(false);
+        tfFechaHoraEntrada.setVisible(false);
+        lblFechaHoraSalida.setVisible(false);
+        tfFechaHoraSalida.setVisible(false);
+        lblTiempo.setVisible(false);
+        tfTiempo.setVisible(false);
+        lblNumCascos.setVisible(false);
+        tfNumCascos.setVisible(false);
+        lblCasillero1.setVisible(false);
+        tfCasillero1.setVisible(false);
+        lblObservaciones1.setVisible(false);
+        tfObservaciones.setVisible(false);
+        chbLlaves1.setVisible(false);
+        chbDejaFicha.setVisible(false);
+        btnRegistrarSalida.setVisible(false);
+        btnRegistrarCancel1.setVisible(false);
+        lblRecargo.setVisible(false);
+        lblValorPagar.setVisible(false);
+        tfValorPagar.setVisible(false);
+    }
+
+    private void ocultarEntrada() {
+        lblPlaca.setVisible(false);
+        tfPlaca.setVisible(false);
+        lblCodigo.setVisible(false);
+        tfCodigo.setVisible(false);
+        lblTipoVehiculo1.setVisible(false);
+        cbTipoVehiculo.setVisible(false);
+        lblPropietario1.setVisible(false);
+        tfPropietario.setVisible(false);
+        lblFechaHoraEntrada.setVisible(false);
+        tfFechaHoraEntrada.setVisible(false);
+        lblFechaHoraSalida.setVisible(false);
+        tfFechaHoraSalida.setVisible(false);
+        lblNumCascos.setVisible(false);
+        chbUno.setVisible(false);
+        chbDos.setVisible(false);
+        lblCasillero1.setVisible(false);
+        tfCasillero1.setVisible(false);
+        lblObservaciones1.setVisible(false);
+        tfObservaciones.setVisible(false);
+        chbLlaves1.setVisible(false);
+        btnRegistrar1.setVisible(false);
+        btnRegistrarCancel1.setVisible(false);
+    }
+
+    private void desplegarEntrada() {
+        lblRegistrar.setText("Registrar Entrada");
+        lblPlaca.setVisible(true);
+        tfPlaca.setText(tfCodigoPlaca.getText());
+        tfPlaca.setVisible(true);
+        lblCodigo.setVisible(true);
+        tfCodigo.setText("");
+        tfCodigo.setEnabled(true);
+        tfCodigo.setVisible(true);
+        lblTipoVehiculo1.setVisible(true);
+        cbTipoVehiculo.setVisible(true);
+        lblPropietario1.setVisible(true);
+        lblPropietario1.setEnabled(true);
+        tfPropietario.setVisible(true);
+        tfPropietario.setEnabled(true);
+        tfPropietario.setText("");
+        lblFechaHoraEntrada.setVisible(true);
+        lblFechaHoraEntrada.setEnabled(true);
+        tfFechaHoraEntrada.setVisible(true);
+        tfFechaHoraEntrada.setText("");
+        lblNumCascos.setVisible(true);
+        chbUno.setVisible(true);
+        chbDos.setVisible(true);
+        lblCasillero1.setVisible(true);
+        tfCasillero1.setVisible(true);
+        lblObservaciones1.setVisible(true);
+        tfObservaciones.setVisible(true);
+        chbLlaves1.setVisible(true);
+        btnRegistrar1.setVisible(true);
+        btnRegistrarCancel1.setVisible(true);
+    }
 
     private void cbTipoVehiculoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTipoVehiculoItemStateChanged
         if (cbTipoVehiculo.getSelectedItem().equals("Moto")) {
@@ -406,6 +644,83 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
 
     }//GEN-LAST:event_chbDosMouseClicked
 
+    private void tfFechaHoraSalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfFechaHoraSalidaMouseClicked
+        clsGestorFacturacion gestor = new clsGestorFacturacion();
+        Date date = new Date();
+        DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        tfFechaHoraSalida.setText(hourdateFormat.format(date));
+        try {             
+        tiempoTranscurrido();
+        tfTiempo.setText(atrDias+" dias "+atrHoras+" horas "+atrMinutos+" minutos ");
+        String totalApagar = gestor.totalPagar(atrDias,atrHoras,atrMinutos);
+        tfValorPagar.setText(totalApagar);
+        } catch (Exception e) {
+        }
+       
+        
+    }//GEN-LAST:event_tfFechaHoraSalidaMouseClicked
+    private void tiempoTranscurrido() {
+        Date tiempoSalida;
+        Date tiempoEntrada;
+        int diferencia;
+        DateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            tiempoSalida = formato.parse(tfFechaHoraSalida.getText());
+            tiempoEntrada = formato.parse(tfFechaHoraEntrada.getText());
+            diferencia = (int) ((tiempoSalida.getTime() - tiempoEntrada.getTime()) / 1000);
+            
+            if (diferencia > 86400) {
+                atrDias = String.valueOf((int) Math.floor(diferencia / 86400));
+                
+                diferencia = diferencia - (Integer.parseInt(atrDias) * 86400);
+            }
+            if (diferencia > 3600) {
+                atrHoras = String.valueOf((int) Math.floor(diferencia / 3600));
+                diferencia = diferencia - (Integer.parseInt(atrHoras) * 3600);
+            }
+            if (diferencia > 60) {
+                atrMinutos =String.valueOf((int) Math.floor(diferencia / 60));
+                diferencia = diferencia - (Integer.parseInt(atrMinutos) * 60);
+            }
+        } catch (Exception e) {
+        }
+
+    }
+    private void btnRegistrarSalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarSalidaMouseClicked
+        String fechaHoraSalida = tfFechaHoraSalida.getText().trim();
+        String valorApagar = tfValorPagar.getText().trim();
+        Boolean dejaFicha = chbDejaFicha.getState();
+        clsGestorFacturacion gestorFac = new clsGestorFacturacion();
+        GestorParqueo gestor = new GestorParqueo();
+        try {
+            clsRegistroParqueo registro = new clsRegistroParqueo(atrRegistro.getUsuario(), atrRegistro.getVehiculo(),
+                    atrRegistro.getCodigoBarras(), atrRegistro.getIdParqueadero(), atrRegistro.getNombresApellidosProp(),
+                    atrRegistro.getFechaHoraEntrada(), atrRegistro.getNumeroCascos(), atrRegistro.getNumeroCasillero(),
+                    atrRegistro.getDejaLlaves(), atrRegistro.getObservaciones());
+            registro.setFechaHoraSalida(fechaHoraSalida);
+            registro.setDejaFicha(dejaFicha.toString());
+            if(gestor.registrarSalida(registro)){
+                if (gestorFac.registrarFactura(new clsFacturacion(valorApagar))) {
+                    JOptionPane.showMessageDialog(null, "Salida registrada correctamente.");
+                }else{
+                     JOptionPane.showMessageDialog(null, "No se pudo realizar el registro de la salida.");
+                }
+            }else{
+                 JOptionPane.showMessageDialog(null, "No se pudo realizar el registro de la salida.");
+            }
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_btnRegistrarSalidaMouseClicked
+
+    private void chbDejaFichaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chbDejaFichaItemStateChanged
+        if (chbDejaFicha.getState()) {
+            lblRecargo.setVisible(false);
+        } else {
+            lblRecargo.setVisible(true);
+        }
+    }//GEN-LAST:event_chbDejaFichaItemStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -423,20 +738,21 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GUIRegistrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIRegistrarParqueo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GUIRegistrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIRegistrarParqueo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GUIRegistrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIRegistrarParqueo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GUIRegistrarEntrada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GUIRegistrarParqueo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GUIRegistrarEntrada().setVisible(true);
+                new GUIRegistrarParqueo().setVisible(true);
             }
         });
     }
@@ -445,20 +761,26 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnRegistrar1;
     private javax.swing.JButton btnRegistrarCancel1;
+    private javax.swing.JButton btnRegistrarSalida;
     private javax.swing.JComboBox<String> cbTipoVehiculo;
+    private java.awt.Checkbox chbDejaFicha;
     private java.awt.Checkbox chbDos;
     private java.awt.Checkbox chbLlaves1;
     private java.awt.Checkbox chbUno;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblCasillero1;
     private javax.swing.JLabel lblCodigo;
-    private javax.swing.JLabel lblFechaHoraEntrada1;
+    private javax.swing.JLabel lblFechaHoraEntrada;
+    private javax.swing.JLabel lblFechaHoraSalida;
     private javax.swing.JLabel lblNumCascos;
     private javax.swing.JLabel lblObservaciones1;
     private javax.swing.JLabel lblPlaca;
     private javax.swing.JLabel lblPropietario1;
+    private java.awt.Label lblRecargo;
     private java.awt.Label lblRegistrar;
+    private javax.swing.JLabel lblTiempo;
     private javax.swing.JLabel lblTipoVehiculo1;
+    private javax.swing.JLabel lblValorPagar;
     private javax.swing.JPanel pnlRegistrarEntrada;
     private javax.swing.JRadioButton rbCodigo;
     private javax.swing.JRadioButton rbPlaca;
@@ -466,8 +788,13 @@ public class GUIRegistrarEntrada extends javax.swing.JFrame {
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfCodigoPlaca;
     private java.awt.TextField tfFechaHoraEntrada;
+    private java.awt.TextField tfFechaHoraSalida;
+    private javax.swing.JTextField tfNumCascos;
     private java.awt.TextField tfObservaciones;
     private javax.swing.JTextField tfPlaca;
     private javax.swing.JTextField tfPropietario;
+    private java.awt.TextField tfTiempo;
+    private javax.swing.JTextField tfTipoVehiculo;
+    private javax.swing.JTextField tfValorPagar;
     // End of variables declaration//GEN-END:variables
 }

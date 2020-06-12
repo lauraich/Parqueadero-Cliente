@@ -5,6 +5,8 @@
  */
 package co.unicauca.parqueadero.acceso;
 
+import co.unicauca.parqueadero.negocio.clsUsuario;
+import co.unicauca.parqueadero.transversal.JSONServices;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -25,6 +27,8 @@ public class LoginServicioImplSockets implements ILoginServicio {
     private PrintStream salidaDecorada;
     private final String IP_SERVIDOR = "localhost";
     private final int PUERTO = 5000;
+    private JSONServices atrParse = JSONServices.getInstancia();
+
 
     /**
      * Obtiene el login de un cliente en formato Json
@@ -103,5 +107,30 @@ public class LoginServicioImplSockets implements ILoginServicio {
     public void conectar(String address, int port) throws IOException {
         socket = new Socket(address, port);
         System.out.println("Conectado");
+    }
+
+    @Override
+    public clsUsuario find(String login) throws Exception {
+         String jsonCliente = null;
+        try {
+            conectar(IP_SERVIDOR, PUERTO);
+            jsonCliente = leerFlujoEntradaSalida("findUser|",login);
+            cerrarFlujos();
+            desconectar();
+
+        } catch (IOException ex) {
+            Logger.getLogger(ParqueoServicioImplSockets.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (jsonCliente == null) {
+            throw new Exception("No se pudo conectar con el servidor");
+        } else {
+            if (!jsonCliente.equals("NO_ENCONTRADO")) {
+                //Lo encontró
+                clsUsuario user;
+                user=atrParse.parseToUsuario(jsonCliente);
+                return user;
+            }
+        }
+        return null;
     }
 }

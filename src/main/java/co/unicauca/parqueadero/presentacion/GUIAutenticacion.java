@@ -5,9 +5,13 @@
  */
 package co.unicauca.parqueadero.presentacion;
 
+import co.unicauca.parqueadero.negocio.clsUsuario;
+import co.unicauca.parqueadero.negocio.clsGestorUsuarios;
+import co.unicauca.parqueadero.negocio.GestorParqueadero;
+import co.unicauca.parqueadero.negocio.Parqueadero;
 import javax.swing.JFrame;
-import co.unicauca.parqueadero.presentacion.GUIPrincipal;
 import co.unicauca.parqueadero.transversal.Seguridad;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -219,15 +223,22 @@ public class GUIAutenticacion extends javax.swing.JFrame {
 
     private void btnLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLoginMouseClicked
         Seguridad seg = new Seguridad();
+        clsGestorUsuarios gestor = new clsGestorUsuarios();
+
         try {
             if (seg.login(tfUsuario.getText().trim(), tfContraseña.getText().trim())) {
+                clsUsuario usuario = gestor.find(tfUsuario.getText().trim());
+                //TO DO cambiar metodo por uno que devuelva solo un parqueadero
+                if (cuantosParqueaderos(usuario.getAtrCedula()).size() == 1) {                    
+                    GUIPrincipal principal = new GUIPrincipal(usuario,cuantosParqueaderos(usuario.getAtrCedula()).get(1));
+                    principal.setVisible(true);
+                    //principal.pack();
+                    principal.setLocationRelativeTo(null);
+                    principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    this.dispose();
+                } 
                 System.out.println("Usuario: " + tfUsuario.getText());
-                GUIPrincipal principal = new GUIPrincipal(tfUsuario.getText().trim());
-                principal.setVisible(true);
-                //principal.pack();
-                principal.setLocationRelativeTo(null);
-                principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                this.dispose();
+
             } else {
                 JOptionPane.showMessageDialog(null, "Credenciales Invalidos");
             }
@@ -246,6 +257,15 @@ public class GUIAutenticacion extends javax.swing.JFrame {
     private void btnloginCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginCancelMouseClicked
         System.exit(0);
     }//GEN-LAST:event_btnloginCancelMouseClicked
+
+    public List<Parqueadero> cuantosParqueaderos(String cedula) {
+        try {
+            GestorParqueadero gestorParq = new GestorParqueadero();
+            return gestorParq.getParqueaderos(cedula);
+        } catch (Exception e) {
+        }
+        return null;
+    }
 
     /**
      * @param args the command line arguments

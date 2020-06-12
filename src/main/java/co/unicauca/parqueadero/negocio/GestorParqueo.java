@@ -1,22 +1,21 @@
-
 package co.unicauca.parqueadero.negocio;
 
-import co.unicauca.parqueadero.acceso.EntradaServicioImplSockets;
+import co.unicauca.parqueadero.acceso.ParqueoServicioImplSockets;
 import co.unicauca.parqueadero.acceso.IRegistroParqueo;
 
 /**
  * Fachada con la que se comunica la capa de presentación
  *
  */
-public class GestorEntrada {
+public class GestorParqueo {
 
     IRegistroParqueo RegistroEntrada;
 
     /**
      * Constructor
      */
-    public GestorEntrada() {
-        RegistroEntrada = new EntradaServicioImplSockets();
+    public GestorParqueo() {
+        RegistroEntrada = new ParqueoServicioImplSockets();
     }
 
     /**
@@ -31,4 +30,15 @@ public class GestorEntrada {
         return RegistroEntrada.registrarEntrada(registro);
     }
 
+    public boolean registrarSalida(clsRegistroParqueo registro) throws Exception {
+        return RegistroEntrada.registrarSalida(registro);
+    }
+
+    public clsRegistroParqueo buscarXplaca(String placa) throws Exception {
+        return RegistroEntrada.buscarXplaca(placa);
+    }
+
+    public clsRegistroParqueo buscarXcodigo(String codigo) throws Exception {
+        return RegistroEntrada.buscarXcodigo(codigo);
+    }
 }

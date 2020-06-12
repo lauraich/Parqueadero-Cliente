@@ -17,6 +17,7 @@ public class clsRegistroParqueo {
     private String atrDejaLlaves = "";
     private String atrObservaciones = "";
     private String atrIdParqueadero = "";
+    private String atrDejaFicha = "";
 
     /**
      * Constructor parametrizado
@@ -44,6 +45,8 @@ public class clsRegistroParqueo {
         this.atrNumeroCasillero = prmNumeroCasillero;
         this.atrDejaLlaves = prmDejaLlaves;
         atrObservaciones = prmObservaciones;
+    }
+    public clsRegistroParqueo() {
     }
 
     public String getIdParqueadero() {
@@ -133,4 +136,14 @@ public class clsRegistroParqueo {
     public void setNumeroCasillero(String prmNumeroCasillero) {
         this.atrNumeroCasillero = prmNumeroCasillero;
     }
+
+    public String getDejaFicha() {
+        return atrDejaFicha;
+    }
+
+    public void setDejaFicha(String atrDejaFicha) {
+        this.atrDejaFicha = atrDejaFicha;
+    }
+    
+    
 }

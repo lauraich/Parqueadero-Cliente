@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package co.unicauca.parqueadero.transversal;
-import co.unicauca.parqueadero.acceso.ILoginServicio;
 import co.unicauca.parqueadero.acceso.LoginServicioImplSockets;
+import co.unicauca.parqueadero.acceso.ILoginServicio;
 /**
  *
  * @author Usuario

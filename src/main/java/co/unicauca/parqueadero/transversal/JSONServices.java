@@ -5,9 +5,12 @@
  */
 package co.unicauca.parqueadero.transversal;
 import co.unicauca.parqueadero.negocio.*;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  *
@@ -23,11 +26,14 @@ public class JSONServices {
         return atrParseToJSON;
     }
     public String parseToJSON(List<Parqueadero> prmParqueaderos){
-        JsonArray jsonArray = new JsonArray();
+        JsonObject jsonObj=new JsonObject();
+        int i=1;
         for (Parqueadero objParqueadero : prmParqueaderos) {
-            jsonArray.add(parseToJson(objParqueadero));
+            jsonObj.addProperty(String.valueOf(i), parseToJSON(objParqueadero));
+            System.out.println("Objeto: "+jsonObj.toString());
+            i++;
         }
-        return jsonArray.toString();
+        return jsonObj.toString();
     }
     public String parseToJSON(Parqueadero prmParqueadero){
         return parseToJson(prmParqueadero).toString();
@@ -70,5 +76,67 @@ public class JSONServices {
         jsonObj.addProperty("Login", prmUser.getAtrLogin());
         jsonObj.addProperty("Password",prmUser.getAtrPassword());
         return jsonObj.toString();
+    }
+    public clsUsuario parseToUsuario(String prmJSONUser){
+        clsUsuario objUser=new clsUsuario();
+        Gson gson = new Gson();
+        Properties properties = gson.fromJson(prmJSONUser, Properties.class);
+        objUser.setAtrCedula(properties.getProperty("Cedula"));
+        objUser.setAtrNombres(properties.getProperty("Nombres"));
+        objUser.setAtrApellidos(properties.getProperty("Apellidos"));
+        objUser.setAtrRol(properties.getProperty("Rol"));
+        objUser.setAtrLogin(properties.getProperty("Login"));
+        objUser.setAtrPassword(properties.getProperty("Password"));
+        return objUser;
+    }
+    public Vehiculo parseToVehiculo(String prmJSONVehiculo){
+        Vehiculo objVehiculo=new Vehiculo();
+         Gson gson = new Gson();
+        Properties properties = gson.fromJson(prmJSONVehiculo, Properties.class);
+        objVehiculo.setPlaca(properties.getProperty("Placa"));
+        objVehiculo.setTipoVehiculo(properties.getProperty("TipoVehiculo"));
+        return objVehiculo;
+    }
+     public List<Parqueadero> parseToParqueaderos(String prmJSONParqueadero){
+        List<Parqueadero> objParqueaderos=new ArrayList();
+        int i=1;
+        try {
+            Gson gson = new Gson();
+        Properties properties = gson.fromJson(prmJSONParqueadero, Properties.class);
+        while(true){
+            objParqueaderos.add(parseToParqueadero(properties.getProperty(String.valueOf(i))));
+            i++;
+        }
+        } catch (Exception e) {
+            System.out.println("Eror: "+e.getMessage());
+        }
+         return objParqueaderos;
+    }
+      public Parqueadero parseToParqueadero(String prmJSONParqueadero){
+        Parqueadero objParqueadero=new Parqueadero();
+        Gson gson = new Gson();
+        Properties properties = gson.fromJson(prmJSONParqueadero, Properties.class);
+        objParqueadero.setNombre(properties.getProperty("NombreParqueadero"));
+        objParqueadero.setDireccion(properties.getProperty("Direccion"));
+        objParqueadero.setTelefono(properties.getProperty("Telefono"));
+        objParqueadero.setId(properties.getProperty("IDParqueadero"));
+        return objParqueadero;
+    }
+     public clsRegistroParqueo parseToRegistroParqueo(String prmJSONRegistro){
+        clsRegistroParqueo objRegistro=new clsRegistroParqueo();
+        Gson gson = new Gson();
+        Properties properties = gson.fromJson(prmJSONRegistro, Properties.class);
+        objRegistro.setUsuario(parseToUsuario(properties.getProperty("Usuario")));
+        objRegistro.setVehiculo(parseToVehiculo(properties.getProperty("Vehiculo")));
+        objRegistro.setAtrCodigoBarras(properties.getProperty("CodigoBarras"));
+        objRegistro.setNombresApellidosProp(properties.getProperty("NombresApellidosProp"));
+        objRegistro.setFechaHoraEntrada(properties.getProperty("FechaHoraEntrada"));
+        objRegistro.setFechaHoraSalida(properties.getProperty("FechaHoraSalida"));
+        objRegistro.setNumeroCascos(properties.getProperty("NumeroCascos"));
+        objRegistro.setNumeroCasillero(properties.getProperty("NumeroCasillero"));
+        objRegistro.setDejaLlaves(properties.getProperty("DejaLlaves"));
+        objRegistro.setAtrObservaciones(properties.getProperty("Observaciones"));
+        objRegistro.setAtrIdParqueadero(properties.getProperty("IdParqueadero"));
+        return objRegistro;
     }
 }

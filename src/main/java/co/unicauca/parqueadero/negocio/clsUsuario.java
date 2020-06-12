@@ -1,6 +1,5 @@
 package co.unicauca.parqueadero.negocio;
 
-import javax.print.DocFlavor;
 
 /**
  * Representa un usuario en la base de datos

@@ -5,15 +5,18 @@
  */
 package co.unicauca.parqueadero.presentacion;
 
+import co.unicauca.parqueadero.negocio.Parqueadero;
+import co.unicauca.parqueadero.negocio.clsUsuario;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import co.unicauca.parqueadero.presentacion.GUIRegistrarEntrada;
+import co.unicauca.parqueadero.presentacion.GUIRegistrarParqueo;
 
 /**
  * Interfaz gráfica Principal
  */
 public class GUIPrincipal extends javax.swing.JFrame {
-
+    clsUsuario usuario;
+    Parqueadero parqueadero;
     /**
      * Creates new form GUIPrincipal
      */
@@ -22,11 +25,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     }
 
-    public GUIPrincipal(String prmUser) {
+    public GUIPrincipal(clsUsuario prmUsuario,Parqueadero prmParqueadero) {
         initComponents();
-        lblAdmin.setText(prmUser);
-        lblAdmin.setName(prmUser);
-
+        usuario=prmUsuario;
+        parqueadero=prmParqueadero;
+        lblAdmin.setText(usuario.getAtrLogin());
+        lblAdmin.setName(usuario.getAtrLogin());
+        lblParqueadero.setText(parqueadero.getNombre());
+        lblParqueadero.setName(parqueadero.getNombre());
     }
 
     /**
@@ -40,7 +46,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         lblPrincipal = new javax.swing.JLabel();
-        lblRegistrar = new javax.swing.JLabel();
+        lblParqueadero = new javax.swing.JLabel();
         btnRegistrar = new rojerusan.RSButtonMetro();
         btnAgregarParqueadero = new rojerusan.RSButtonMetro();
         btnAgregarFuncionarios = new rojerusan.RSButtonMetro();
@@ -60,10 +66,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         lblPrincipal.setForeground(new java.awt.Color(255, 255, 255));
         lblPrincipal.setText("Principal");
 
-        lblRegistrar.setBackground(new java.awt.Color(255, 255, 255));
-        lblRegistrar.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
-        lblRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        lblRegistrar.setText("    Parqueadero");
+        lblParqueadero.setBackground(new java.awt.Color(255, 255, 255));
+        lblParqueadero.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
+        lblParqueadero.setForeground(new java.awt.Color(255, 255, 255));
+        lblParqueadero.setText("    Parqueadero");
 
         btnRegistrar.setBackground(new java.awt.Color(10, 61, 98));
         btnRegistrar.setText("      Registrar Entrada/Salida");
@@ -105,7 +111,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblParqueadero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -125,7 +131,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblPrincipal)
                 .addGap(18, 18, 18)
-                .addComponent(lblRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblParqueadero, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -161,7 +167,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-        GUIRegistrarEntrada registrar = new GUIRegistrarEntrada();
+        GUIRegistrarParqueo registrar = new GUIRegistrarParqueo();
         registrar.setVisible(true);
         registrar.pack();
         registrar.setLocationRelativeTo(null);
@@ -175,7 +181,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         registrar.setLocationRelativeTo(null);
         registrar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_btnAgregarParqueaderoMouseClicked
-
+    
     /**
      * @param args the command line arguments
      */
@@ -222,7 +228,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblAdmin;
+    private javax.swing.JLabel lblParqueadero;
     private javax.swing.JLabel lblPrincipal;
-    private javax.swing.JLabel lblRegistrar;
     // End of variables declaration//GEN-END:variables
 }

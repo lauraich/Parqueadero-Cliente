@@ -9,6 +9,11 @@ public class Vehiculo {
     private String placa;
     private String tipoVehiculo;
 
+    public Vehiculo() {
+        placa="";
+        tipoVehiculo="";
+    }
+
     /**
      * Constructor parametrizado
      *

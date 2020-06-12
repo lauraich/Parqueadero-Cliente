@@ -18,7 +18,11 @@ public class GestorParqueadero {
     public GestorParqueadero() {
         this.parqueaderos = new ParqueaderoServicioImplSockets();
     }
-
+    
+    public List<Parqueadero> getParqueaderos(String cedula) throws Exception {
+        return parqueaderos.getParqueaderos();
+    }
+    
     /**
      * muestra todos los parqueaderos registrados
      *

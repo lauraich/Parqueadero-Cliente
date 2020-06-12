@@ -5,6 +5,8 @@
  */
 package co.unicauca.parqueadero.acceso;
 
+import co.unicauca.parqueadero.negocio.clsUsuario;
+
 /**
  * Interface que define los servicios con el servidor
  *
@@ -12,4 +14,5 @@ package co.unicauca.parqueadero.acceso;
 public interface ILoginServicio {
 
     public boolean login(String usuario, String contraseña) throws Exception;
+    public clsUsuario find(String login) throws Exception;
 }
