@@ -17,8 +17,8 @@ public interface IRegistroParqueo {
 
     public boolean registrarSalida(clsRegistroParqueo prmRegistroParqueo) throws Exception;
     
-    public clsRegistroParqueo buscarXplaca(String placa) throws Exception;
+    public clsRegistroParqueo buscarXplaca(String placa,String prmIdParqueadero) throws Exception;
     
-    public clsRegistroParqueo buscarXcodigo(String codigo) throws Exception;
+    public clsRegistroParqueo buscarXcodigo(String codigo,String prmIdParqueadero) throws Exception;
 
 }

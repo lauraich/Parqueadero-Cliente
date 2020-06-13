@@ -34,11 +34,11 @@ public class GestorParqueo {
         return RegistroEntrada.registrarSalida(registro);
     }
 
-    public clsRegistroParqueo buscarXplaca(String placa) throws Exception {
-        return RegistroEntrada.buscarXplaca(placa);
+    public clsRegistroParqueo buscarXplaca(String placa,String prmIdParqueadero) throws Exception {
+        return RegistroEntrada.buscarXplaca(placa,prmIdParqueadero);
     }
 
-    public clsRegistroParqueo buscarXcodigo(String codigo) throws Exception {
-        return RegistroEntrada.buscarXcodigo(codigo);
+    public clsRegistroParqueo buscarXcodigo(String codigo,String prmIdParqueadero) throws Exception {
+        return RegistroEntrada.buscarXcodigo(codigo,prmIdParqueadero);
     }
 }

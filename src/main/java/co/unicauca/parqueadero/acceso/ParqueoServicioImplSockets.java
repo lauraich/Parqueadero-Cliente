@@ -77,7 +77,27 @@ public class ParqueoServicioImplSockets implements IRegistroParqueo {
         System.out.println("respuesta :" + respuesta);
         return respuesta;
     }
- 
+  /**
+     * Lee el flujo del socket y lo convierte a String
+     *
+     * @param id identificador del cliente
+     * @return
+     * @throws IOException
+     */
+    private String leerFlujoEntradaSalida(String metodo,String prmPlacaCodigo,String prmIdParquadero) throws IOException {
+        String respuesta = "";
+        entradaDecorada = new Scanner(socket.getInputStream());
+        salidaDecorada = new PrintStream(socket.getOutputStream());
+        salidaDecorada.flush();
+        // Usando el protocolo de comunicación
+        salidaDecorada.println( metodo + prmPlacaCodigo+"|"+prmIdParquadero);
+        if (entradaDecorada.hasNextLine()) {
+            respuesta = entradaDecorada.nextLine();
+        }
+        System.out.println("respuesta :" + respuesta);
+        return respuesta;
+    }
+    
     private void cerrarFlujos() {
         salidaDecorada.close();
         entradaDecorada.close();
@@ -130,11 +150,11 @@ public class ParqueoServicioImplSockets implements IRegistroParqueo {
     }
 
     @Override
-    public clsRegistroParqueo buscarXplaca(String placa) throws Exception {
+    public clsRegistroParqueo buscarXplaca(String placa,String prmIdParqueadero) throws Exception {
       String jsonCliente = null;
         try {
             conectar(IP_SERVIDOR, PUERTO);
-            jsonCliente = leerFlujoEntradaSalida("buscarXplaca|",placa);
+            jsonCliente = leerFlujoEntradaSalida("buscarXplaca|",placa,prmIdParqueadero);
             cerrarFlujos();
             desconectar();
 
@@ -155,11 +175,11 @@ public class ParqueoServicioImplSockets implements IRegistroParqueo {
     }
 
     @Override
-    public clsRegistroParqueo buscarXcodigo(String codigo) throws Exception {
+    public clsRegistroParqueo buscarXcodigo(String codigo,String prmIdParqueadero) throws Exception {
          String jsonCliente = null;
         try {
             conectar(IP_SERVIDOR, PUERTO);
-            jsonCliente = leerFlujoEntradaSalida("buscarXcodigo|",codigo);
+            jsonCliente = leerFlujoEntradaSalida("buscarXcodigo|",codigo,prmIdParqueadero);
             cerrarFlujos();
             desconectar();
 

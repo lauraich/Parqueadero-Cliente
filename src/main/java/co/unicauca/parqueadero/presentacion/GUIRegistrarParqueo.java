@@ -438,9 +438,9 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         GestorParqueo gestor = new GestorParqueo();
         try {
             if (rbPlaca.isSelected()) {
-                atrRegistro = gestor.buscarXplaca(tfCodigoPlaca.getText());
+                atrRegistro = gestor.buscarXplaca(tfCodigoPlaca.getText(),atrParqueadero.getId());
             } else {
-                atrRegistro = gestor.buscarXcodigo(tfCodigoPlaca.getText());
+                atrRegistro = gestor.buscarXcodigo(tfCodigoPlaca.getText(),atrParqueadero.getId());
             }
             if (atrRegistro == null) {
                 ocultarSalida();
