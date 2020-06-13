@@ -113,6 +113,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("OK");
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarMouseClicked(evt);
@@ -136,6 +137,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         btnRegistrar1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnRegistrar1.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrar1.setText("Registrar");
+        btnRegistrar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegistrar1MouseClicked(evt);
@@ -147,6 +149,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         btnRegistrarCancel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnRegistrarCancel1.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrarCancel1.setText("Cancelar");
+        btnRegistrarCancel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrarCancel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegistrarCancel1MouseClicked(evt);

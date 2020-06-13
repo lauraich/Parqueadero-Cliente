@@ -29,6 +29,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         initComponents();
         usuario=prmUsuario;
         parqueadero=prmParqueadero;
+        interfazTipoUsuario();
         lblAdmin.setText(usuario.getAtrLogin());
         lblAdmin.setName(usuario.getAtrLogin());
         lblParqueadero.setText(parqueadero.getNombre());
@@ -144,8 +145,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, -1));
@@ -159,16 +160,26 @@ public class GUIPrincipal extends javax.swing.JFrame {
         lblAdmin.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblAdmin.setForeground(new java.awt.Color(255, 255, 255));
         lblAdmin.setText("User");
-        jPanel3.add(lblAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
+        jPanel3.add(lblAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, -1, -1));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 50));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 550, 450));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 0, 550, 440));
 
-        setSize(new java.awt.Dimension(838, 489));
+        setSize(new java.awt.Dimension(838, 477));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void interfazTipoUsuario(){
+        if(usuario.getAtrRol().equals("2")){
+            btnAgregarParqueadero.setVisible(false);
+            btnAgregarFuncionarios.setVisible(false);
+            btnAjustes.setAlignmentX(btnAgregarParqueadero.getAlignmentX());
+            btnAjustes.setAlignmentY(btnAgregarParqueadero.getAlignmentY());
+            btnCerrarSesion.setAlignmentX(btnAgregarFuncionarios.getAlignmentX());
+            btnCerrarSesion.setAlignmentY(btnAgregarFuncionarios.getAlignmentY());
+        }
+    }
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
         GUIRegistrarParqueo registrar = new GUIRegistrarParqueo(usuario,parqueadero);
         registrar.setVisible(true);

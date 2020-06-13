@@ -87,6 +87,7 @@ public class GUIAutenticacion extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLogin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLoginMouseClicked(evt);
@@ -97,6 +98,7 @@ public class GUIAutenticacion extends javax.swing.JFrame {
         btnloginCancel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnloginCancel.setForeground(new java.awt.Color(255, 255, 255));
         btnloginCancel.setText("Cancelar");
+        btnloginCancel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnloginCancel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnloginCancelMouseClicked(evt);
