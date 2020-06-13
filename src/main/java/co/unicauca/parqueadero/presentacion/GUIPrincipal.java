@@ -22,13 +22,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
      */
     public GUIPrincipal() {
         initComponents();
-
+        
     }
 
     public GUIPrincipal(clsUsuario prmUsuario,Parqueadero prmParqueadero) {
         initComponents();
         usuario=prmUsuario;
         parqueadero=prmParqueadero;
+        this.setTitle("Parqueadero "+parqueadero.getNombre());
         interfazTipoUsuario();
         lblAdmin.setText(usuario.getAtrLogin());
         lblAdmin.setName(usuario.getAtrLogin());

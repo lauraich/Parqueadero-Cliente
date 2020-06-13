@@ -40,7 +40,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     public GUIRegistrarParqueo(clsUsuario prmUsuario, Parqueadero prmParqueadero) {
         initComponents();
         this.setLocationRelativeTo(null);
-        lblParqueadero.setText("Parqueadero "+prmParqueadero.getNombre());
+         this.setTitle("Parqueadero "+prmParqueadero.getNombre());
         ocultarEntrada();
         ocultarSalida();
         atrUsuario = prmUsuario;
@@ -50,7 +50,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     public GUIRegistrarParqueo() {
         initComponents();
         this.setLocationRelativeTo(null);
-        lblParqueadero.setText(atrParqueadero.getNombre());
+         this.setTitle("Parqueadero "+atrParqueadero.getNombre());
         ocultarEntrada();
         ocultarSalida();
     }
@@ -102,7 +102,6 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         btnRegistrarSalida = new javax.swing.JButton();
         rbCodigo = new javax.swing.JRadioButton();
         rbPlaca = new javax.swing.JRadioButton();
-        lblParqueadero = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -327,20 +326,13 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
             }
         });
 
-        lblParqueadero.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblParqueadero.setForeground(new java.awt.Color(255, 255, 255));
-        lblParqueadero.setName(""); // NOI18N
-        lblParqueadero.setText("Parqueadero");
-
         javax.swing.GroupLayout pnlRegistrarEntradaLayout = new javax.swing.GroupLayout(pnlRegistrarEntrada);
         pnlRegistrarEntrada.setLayout(pnlRegistrarEntradaLayout);
         pnlRegistrarEntradaLayout.setHorizontalGroup(
             pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRegistrarEntradaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblParqueadero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(rbCodigo)
                 .addGap(18, 18, 18)
@@ -355,25 +347,20 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         pnlRegistrarEntradaLayout.setVerticalGroup(
             pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRegistrarEntradaLayout.createSequentialGroup()
-                .addGroup(pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlRegistrarEntradaLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBuscar)
-                            .addComponent(tfCodigoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rbCodigo)
-                            .addComponent(rbPlaca)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRegistrarEntradaLayout.createSequentialGroup()
-                        .addComponent(lblParqueadero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
+                .addGroup(pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnBuscar)
+                        .addComponent(tfCodigoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rbCodigo)
+                        .addComponent(rbPlaca))
+                    .addComponent(lblRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5))
         );
 
         lblRegistrar.getAccessibleContext().setAccessibleName("Registrar ");
-        lblParqueadero.getAccessibleContext().setAccessibleName("Parqueadero");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -823,7 +810,6 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     private javax.swing.JLabel lblFechaHoraSalida;
     private javax.swing.JLabel lblNumCascos;
     private javax.swing.JLabel lblObservaciones1;
-    private java.awt.Label lblParqueadero;
     private javax.swing.JLabel lblPlaca;
     private javax.swing.JLabel lblPropietario1;
     private java.awt.Label lblRecargo;
