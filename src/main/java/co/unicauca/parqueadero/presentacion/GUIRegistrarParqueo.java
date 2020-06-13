@@ -29,6 +29,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     String atrDias = "";
     String atrHoras = "";
     String atrMinutos = "";
+    String atrTotalApagar = "";
 
     /**
      * Creates new form GUIRegistrarEntrada
@@ -278,6 +279,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
 
         chbDejaFicha.setForeground(new java.awt.Color(255, 255, 255));
         chbDejaFicha.setLabel("Entrega Ficha");
+        chbDejaFicha.setState(true);
         chbDejaFicha.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 chbDejaFichaItemStateChanged(evt);
@@ -510,7 +512,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         chbDejaFicha.setVisible(true);
         lblValorPagar.setVisible(true);
         tfValorPagar.setVisible(true);
-        lblRecargo.setVisible(true);
+        lblRecargo.setVisible(false);
         btnRegistrarSalida.setVisible(true);
         btnRegistrarCancel1.setVisible(true);
     }
@@ -680,8 +682,9 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
                 atrMinutos = "0";
             }
             tfTiempo.setText(atrDias + " dias " + atrHoras + " horas " + atrMinutos + " minutos ");
-            String totalApagar = gestor.totalPagar(tfTipoVehiculo.getText(), atrDias, atrHoras, atrMinutos);
-            tfValorPagar.setText(totalApagar);
+            atrTotalApagar = gestor.totalPagar(tfTipoVehiculo.getText(), atrDias, atrHoras, atrMinutos);
+            
+            tfValorPagar.setText(atrTotalApagar);
         } catch (Exception e) {
         }
 
@@ -742,10 +745,14 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarSalidaMouseClicked
 
     private void chbDejaFichaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chbDejaFichaItemStateChanged
+         
         if (chbDejaFicha.getState()) {
             lblRecargo.setVisible(false);
+            tfValorPagar.setText(atrTotalApagar);
         } else {
-            lblRecargo.setVisible(true);
+            lblRecargo.setVisible(true);           
+            String total= Integer.toString(Integer.parseInt(atrTotalApagar)+5000);
+            tfValorPagar.setText(total);
         }
     }//GEN-LAST:event_chbDejaFichaItemStateChanged
 
