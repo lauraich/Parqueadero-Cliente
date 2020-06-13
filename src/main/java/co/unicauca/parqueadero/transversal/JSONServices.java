@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package co.unicauca.parqueadero.transversal;
+
 import co.unicauca.parqueadero.negocio.*;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -17,74 +18,85 @@ import java.util.Properties;
  * @author Fernando Campo
  */
 public class JSONServices {
+
     private static JSONServices atrParseToJSON;
-    public static JSONServices getInstancia(){
-        if(atrParseToJSON==null){
-            atrParseToJSON=new JSONServices();
+
+    public static JSONServices getInstancia() {
+        if (atrParseToJSON == null) {
+            atrParseToJSON = new JSONServices();
         }
         return atrParseToJSON;
     }
-    public String parseToJSON(List<Parqueadero> prmParqueaderos){
-        JsonObject jsonObj=new JsonObject();
-        int i=1;
+
+    public String parseToJSON(List<Parqueadero> prmParqueaderos) {
+        JsonObject jsonObj = new JsonObject();
+        int i = 1;
         for (Parqueadero objParqueadero : prmParqueaderos) {
             jsonObj.addProperty(String.valueOf(i), parseToJSON(objParqueadero));
-            System.out.println("Objeto: "+jsonObj.toString());
+            System.out.println("Objeto: " + jsonObj.toString());
             i++;
         }
         return jsonObj.toString();
     }
-    public String parseToJSON(Parqueadero prmParqueadero){
+
+    public String parseToJSON(Parqueadero prmParqueadero) {
         return parseToJson(prmParqueadero).toString();
     }
-    private JsonObject parseToJson(Parqueadero prmParqueadero){
-        JsonObject jsonObj=new JsonObject();
-            jsonObj.addProperty("NombreParqueadero", prmParqueadero.getNombre());
-            jsonObj.addProperty("Direccion", prmParqueadero.getDireccion());
-            jsonObj.addProperty("Telefono", prmParqueadero.getTelefono());
-            jsonObj.addProperty("IDParqueadero", prmParqueadero.getId());
-            return jsonObj;
+
+    private JsonObject parseToJson(Parqueadero prmParqueadero) {
+        JsonObject jsonObj = new JsonObject();
+        jsonObj.addProperty("NombreParqueadero", prmParqueadero.getNombre());
+        jsonObj.addProperty("Direccion", prmParqueadero.getDireccion());
+        jsonObj.addProperty("Telefono", prmParqueadero.getTelefono());
+        jsonObj.addProperty("IDParqueadero", prmParqueadero.getId());
+        return jsonObj;
     }
-    public String parseToJson(clsRegistroParqueo prmRegistro){
-        JsonObject jsonObj=new JsonObject();
-        jsonObj.addProperty("Vehiculo",parseToJSON(prmRegistro.getVehiculo()));
-        jsonObj.addProperty("Usuario",parseToJSON(prmRegistro.getUsuario()));
-        jsonObj.addProperty("CodigoBarras",prmRegistro.getCodigoBarras());
-        jsonObj.addProperty("NombresApellidosProp",prmRegistro.getNombresApellidosProp());
-        jsonObj.addProperty("FechaHoraEntrada",prmRegistro.getFechaHoraEntrada());
-        jsonObj.addProperty("FechaHoraSalida",prmRegistro.getFechaHoraSalida());
-        jsonObj.addProperty("NumeroCascos",prmRegistro.getNumeroCascos());
-        jsonObj.addProperty("NumeroCasillero",prmRegistro.getNumeroCasillero());
-        jsonObj.addProperty("DejaLlaves",prmRegistro.getDejaLlaves());
-        jsonObj.addProperty("Observaciones",prmRegistro.getObservaciones());
-        jsonObj.addProperty("IdParqueadero",prmRegistro.getIdParqueadero());
+
+    public String parseToJson(clsRegistroParqueo prmRegistro) {
+        JsonObject jsonObj = new JsonObject();
+        jsonObj.addProperty("Vehiculo", parseToJSON(prmRegistro.getVehiculo()));
+        jsonObj.addProperty("Usuario", parseToJSON(prmRegistro.getUsuario()));
+        jsonObj.addProperty("CodigoBarras", prmRegistro.getCodigoBarras());
+        jsonObj.addProperty("NombresApellidosProp", prmRegistro.getNombresApellidosProp());
+        jsonObj.addProperty("FechaHoraEntrada", prmRegistro.getFechaHoraEntrada());
+        jsonObj.addProperty("FechaHoraSalida", prmRegistro.getFechaHoraSalida());
+        jsonObj.addProperty("NumeroCascos", prmRegistro.getNumeroCascos());
+        jsonObj.addProperty("NumeroCasillero", prmRegistro.getNumeroCasillero());
+        jsonObj.addProperty("DejaLlaves", prmRegistro.getDejaLlaves());
+        jsonObj.addProperty("Observaciones", prmRegistro.getObservaciones());
+        jsonObj.addProperty("IdParqueadero", prmRegistro.getIdParqueadero());
+        jsonObj.addProperty("IdRegistro", prmRegistro.getIdRegistroParqueo());
         return jsonObj.toString();
     }
-    public String parseToJSON(Vehiculo prmVehiculo){
-        JsonObject jsonObj=new JsonObject();
+
+    public String parseToJSON(Vehiculo prmVehiculo) {
+        JsonObject jsonObj = new JsonObject();
         jsonObj.addProperty("Placa", prmVehiculo.getPlaca());
         jsonObj.addProperty("TipoVehiculo", prmVehiculo.getTipoVehiculo());
         return jsonObj.toString();
     }
-    public String parseToJSON(clsUsuario prmUser){
-        JsonObject jsonObj=new JsonObject();
-        jsonObj.addProperty("Cedula",prmUser.getAtrCedula());
-        jsonObj.addProperty("Nombres",prmUser.getAtrNombres());
-        jsonObj.addProperty("Apellidos",prmUser.getAtrApellidos());
-        jsonObj.addProperty("Rol",prmUser.getAtrRol());
+
+    public String parseToJSON(clsUsuario prmUser) {
+        JsonObject jsonObj = new JsonObject();
+        jsonObj.addProperty("Cedula", prmUser.getAtrCedula());
+        jsonObj.addProperty("Nombres", prmUser.getAtrNombres());
+        jsonObj.addProperty("Apellidos", prmUser.getAtrApellidos());
+        jsonObj.addProperty("Rol", prmUser.getAtrRol());
         jsonObj.addProperty("Login", prmUser.getAtrLogin());
-        jsonObj.addProperty("Password",prmUser.getAtrPassword());
+        jsonObj.addProperty("Password", prmUser.getAtrPassword());
         return jsonObj.toString();
     }
-    public String parseToJSON(clsFactura prmFactura){
-        JsonObject jsonObj=new JsonObject();
+
+    public String parseToJSON(clsFactura prmFactura) {
+        JsonObject jsonObj = new JsonObject();
         jsonObj.addProperty("ID", prmFactura.getId());
         jsonObj.addProperty("IdRegistro", prmFactura.getIdRegistroParqueo());
         jsonObj.addProperty("valorApagar", prmFactura.getValorApagar());
         return jsonObj.toString();
     }
-    public clsFactura parseToFactura(String prmJSONFactura){
-        clsFactura objFactura=new clsFactura();
+
+    public clsFactura parseToFactura(String prmJSONFactura) {
+        clsFactura objFactura = new clsFactura();
         Gson gson = new Gson();
         Properties properties = gson.fromJson(prmJSONFactura, Properties.class);
         objFactura.setId(properties.getProperty("ID"));
@@ -92,8 +104,9 @@ public class JSONServices {
         objFactura.setValorApagar(properties.getProperty("valorApagar"));
         return objFactura;
     }
-    public clsUsuario parseToUsuario(String prmJSONUser){
-        clsUsuario objUser=new clsUsuario();
+
+    public clsUsuario parseToUsuario(String prmJSONUser) {
+        clsUsuario objUser = new clsUsuario();
         Gson gson = new Gson();
         Properties properties = gson.fromJson(prmJSONUser, Properties.class);
         objUser.setAtrCedula(properties.getProperty("Cedula"));
@@ -104,31 +117,34 @@ public class JSONServices {
         objUser.setAtrPassword(properties.getProperty("Password"));
         return objUser;
     }
-    public Vehiculo parseToVehiculo(String prmJSONVehiculo){
-        Vehiculo objVehiculo=new Vehiculo();
-         Gson gson = new Gson();
+
+    public Vehiculo parseToVehiculo(String prmJSONVehiculo) {
+        Vehiculo objVehiculo = new Vehiculo();
+        Gson gson = new Gson();
         Properties properties = gson.fromJson(prmJSONVehiculo, Properties.class);
         objVehiculo.setPlaca(properties.getProperty("Placa"));
         objVehiculo.setTipoVehiculo(properties.getProperty("TipoVehiculo"));
         return objVehiculo;
     }
-     public List<Parqueadero> parseToParqueaderos(String prmJSONParqueadero){
-        List<Parqueadero> objParqueaderos=new ArrayList();
-        int i=1;
+
+    public List<Parqueadero> parseToParqueaderos(String prmJSONParqueadero) {
+        List<Parqueadero> objParqueaderos = new ArrayList();
+        int i = 1;
         try {
             Gson gson = new Gson();
-        Properties properties = gson.fromJson(prmJSONParqueadero, Properties.class);
-        while(true){
-            objParqueaderos.add(parseToParqueadero(properties.getProperty(String.valueOf(i))));
-            i++;
-        }
+            Properties properties = gson.fromJson(prmJSONParqueadero, Properties.class);
+            while (true) {
+                objParqueaderos.add(parseToParqueadero(properties.getProperty(String.valueOf(i))));
+                i++;
+            }
         } catch (Exception e) {
-            System.out.println("Eror: "+e.getMessage());
+            System.out.println("Eror: " + e.getMessage());
         }
-         return objParqueaderos;
+        return objParqueaderos;
     }
-      public Parqueadero parseToParqueadero(String prmJSONParqueadero){
-        Parqueadero objParqueadero=new Parqueadero();
+
+    public Parqueadero parseToParqueadero(String prmJSONParqueadero) {
+        Parqueadero objParqueadero = new Parqueadero();
         Gson gson = new Gson();
         Properties properties = gson.fromJson(prmJSONParqueadero, Properties.class);
         objParqueadero.setNombre(properties.getProperty("NombreParqueadero"));
@@ -137,8 +153,9 @@ public class JSONServices {
         objParqueadero.setId(properties.getProperty("IDParqueadero"));
         return objParqueadero;
     }
-     public clsRegistroParqueo parseToRegistroParqueo(String prmJSONRegistro){
-        clsRegistroParqueo objRegistro=new clsRegistroParqueo();
+
+    public clsRegistroParqueo parseToRegistroParqueo(String prmJSONRegistro) {
+        clsRegistroParqueo objRegistro = new clsRegistroParqueo();
         Gson gson = new Gson();
         Properties properties = gson.fromJson(prmJSONRegistro, Properties.class);
         objRegistro.setUsuario(parseToUsuario(properties.getProperty("Usuario")));
@@ -152,6 +169,7 @@ public class JSONServices {
         objRegistro.setDejaLlaves(properties.getProperty("DejaLlaves"));
         objRegistro.setAtrObservaciones(properties.getProperty("Observaciones"));
         objRegistro.setAtrIdParqueadero(properties.getProperty("IdParqueadero"));
+        objRegistro.setIdRegistroParqueo(properties.getProperty("IdRegistro"));
         return objRegistro;
     }
 }
