@@ -298,6 +298,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         btnRegistrarSalida.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnRegistrarSalida.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrarSalida.setText("Guardar");
+        btnRegistrarSalida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnRegistrarSalida.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegistrarSalidaMouseClicked(evt);
