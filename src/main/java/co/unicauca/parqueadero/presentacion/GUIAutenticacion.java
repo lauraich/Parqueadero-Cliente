@@ -242,7 +242,7 @@ public class GUIAutenticacion extends javax.swing.JFrame {
                 System.out.println("Usuario: " + tfUsuario.getText());
 
             } else {
-                JOptionPane.showMessageDialog(null, "Credenciales Invalidos");
+                JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrecta");
             }
         } catch (Exception e) {
         }

@@ -110,6 +110,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         btnCerrarSesion.setText("      Cerrar Sesión");
         btnCerrarSesion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnCerrarSesion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCerrarSesionMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -196,6 +201,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
         registrar.setLocationRelativeTo(null);
         registrar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_btnAgregarParqueaderoMouseClicked
+
+    private void btnCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseClicked
+        this.dispose();
+        GUIAutenticacion login = new GUIAutenticacion();
+        login.setVisible(true);
+        login.pack();
+        login.setLocationRelativeTo(null);
+        login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_btnCerrarSesionMouseClicked
     
     /**
      * @param args the command line arguments
