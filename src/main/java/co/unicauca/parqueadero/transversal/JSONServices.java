@@ -65,6 +65,7 @@ public class JSONServices {
         jsonObj.addProperty("DejaLlaves", prmRegistro.getDejaLlaves());
         jsonObj.addProperty("Observaciones", prmRegistro.getObservaciones());
         jsonObj.addProperty("IdParqueadero", prmRegistro.getIdParqueadero());
+        jsonObj.addProperty("EntregaFicha",prmRegistro.getEntregaFicha());
         jsonObj.addProperty("IdRegistro", prmRegistro.getIdRegistroParqueo());
         return jsonObj.toString();
     }
@@ -168,7 +169,8 @@ public class JSONServices {
         objRegistro.setNumeroCasillero(properties.getProperty("NumeroCasillero"));
         objRegistro.setDejaLlaves(properties.getProperty("DejaLlaves"));
         objRegistro.setAtrObservaciones(properties.getProperty("Observaciones"));
-        objRegistro.setAtrIdParqueadero(properties.getProperty("IdParqueadero"));
+        objRegistro.setAtrIdParqueadero(properties.getProperty("IdParqueadero"));        
+        objRegistro.setEntregaFicha(properties.getProperty("EntregaFicha"));
         objRegistro.setIdRegistroParqueo(properties.getProperty("IdRegistro"));
         return objRegistro;
     }

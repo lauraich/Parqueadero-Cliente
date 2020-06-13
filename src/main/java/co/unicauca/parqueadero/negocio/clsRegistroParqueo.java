@@ -5,8 +5,7 @@ package co.unicauca.parqueadero.negocio;
  *
  */
 public class clsRegistroParqueo {
-    
-    private String idRegistroParqueo = "";
+
     private Vehiculo atrVehiculo = null;
     private clsUsuario atrUsuario = null;
     private String atrCodigoBarras = "";
@@ -18,7 +17,8 @@ public class clsRegistroParqueo {
     private String atrDejaLlaves = "";
     private String atrObservaciones = "";
     private String atrIdParqueadero = "";
-    private String atrDejaFicha = "";
+    private String atrEntregaFicha="";
+    private String idRegistroParqueo = "";
 
     /**
      * Constructor parametrizado
@@ -47,6 +47,7 @@ public class clsRegistroParqueo {
         this.atrDejaLlaves = prmDejaLlaves;
         atrObservaciones = prmObservaciones;
     }
+
     public clsRegistroParqueo() {
     }
 
@@ -54,8 +55,8 @@ public class clsRegistroParqueo {
         return idRegistroParqueo;
     }
 
-    public void setIdRegistroParqueo(String idRegistroParqueo) {
-        this.idRegistroParqueo = idRegistroParqueo;
+    public void setIdRegistroParqueo(String prmIdRegistroParqueo) {
+        this.idRegistroParqueo = prmIdRegistroParqueo;
     }
 
     public String getIdParqueadero() {
@@ -146,13 +147,12 @@ public class clsRegistroParqueo {
         this.atrNumeroCasillero = prmNumeroCasillero;
     }
 
-    public String getDejaFicha() {
-        return atrDejaFicha;
+    public String getEntregaFicha() {
+        return atrEntregaFicha;
     }
 
-    public void setDejaFicha(String atrDejaFicha) {
-        this.atrDejaFicha = atrDejaFicha;
+    public void setEntregaFicha(String atrDejaFicha) {
+        this.atrEntregaFicha = atrDejaFicha;
     }
-    
-    
+
 }

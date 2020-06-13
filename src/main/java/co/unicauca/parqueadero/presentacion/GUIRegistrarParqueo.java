@@ -40,6 +40,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     public GUIRegistrarParqueo(clsUsuario prmUsuario, Parqueadero prmParqueadero) {
         initComponents();
         this.setLocationRelativeTo(null);
+        lblParqueadero.setText("Parqueadero "+prmParqueadero.getNombre());
         ocultarEntrada();
         ocultarSalida();
         atrUsuario = prmUsuario;
@@ -49,6 +50,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     public GUIRegistrarParqueo() {
         initComponents();
         this.setLocationRelativeTo(null);
+        lblParqueadero.setText(atrParqueadero.getNombre());
         ocultarEntrada();
         ocultarSalida();
     }
@@ -100,6 +102,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         btnRegistrarSalida = new javax.swing.JButton();
         rbCodigo = new javax.swing.JRadioButton();
         rbPlaca = new javax.swing.JRadioButton();
+        lblParqueadero = new java.awt.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -324,14 +327,21 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
             }
         });
 
+        lblParqueadero.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblParqueadero.setForeground(new java.awt.Color(255, 255, 255));
+        lblParqueadero.setName(""); // NOI18N
+        lblParqueadero.setText("Parqueadero");
+
         javax.swing.GroupLayout pnlRegistrarEntradaLayout = new javax.swing.GroupLayout(pnlRegistrarEntrada);
         pnlRegistrarEntrada.setLayout(pnlRegistrarEntradaLayout);
         pnlRegistrarEntradaLayout.setHorizontalGroup(
             pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRegistrarEntradaLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblParqueadero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(rbCodigo)
                 .addGap(18, 18, 18)
                 .addComponent(rbPlaca)
@@ -340,25 +350,30 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(btnBuscar)
                 .addGap(101, 101, 101))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 755, Short.MAX_VALUE)
         );
         pnlRegistrarEntradaLayout.setVerticalGroup(
             pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlRegistrarEntradaLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnBuscar)
-                        .addComponent(tfCodigoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(rbCodigo)
-                        .addComponent(rbPlaca))
-                    .addComponent(lblRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlRegistrarEntradaLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(pnlRegistrarEntradaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnBuscar)
+                            .addComponent(tfCodigoPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rbCodigo)
+                            .addComponent(rbPlaca)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlRegistrarEntradaLayout.createSequentialGroup()
+                        .addComponent(lblParqueadero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblRegistrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5))
         );
 
         lblRegistrar.getAccessibleContext().setAccessibleName("Registrar ");
+        lblParqueadero.getAccessibleContext().setAccessibleName("Parqueadero");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -368,7 +383,9 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlRegistrarEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(pnlRegistrarEntrada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -438,9 +455,9 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         GestorParqueo gestor = new GestorParqueo();
         try {
             if (rbPlaca.isSelected()) {
-                atrRegistro = gestor.buscarXplaca(tfCodigoPlaca.getText(),atrParqueadero.getId());
+                atrRegistro = gestor.buscarXplaca(tfCodigoPlaca.getText(), atrParqueadero.getId());
             } else {
-                atrRegistro = gestor.buscarXcodigo(tfCodigoPlaca.getText(),atrParqueadero.getId());
+                atrRegistro = gestor.buscarXcodigo(tfCodigoPlaca.getText(), atrParqueadero.getId());
             }
             if (atrRegistro == null) {
                 ocultarSalida();
@@ -455,7 +472,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void rellenarSalida() {
-        
+
         tfCodigo.setText(atrRegistro.getCodigoBarras());
         tfFechaHoraEntrada.setText(atrRegistro.getFechaHoraEntrada());
         tfCodigo.setText(atrRegistro.getCodigoBarras());
@@ -683,7 +700,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
             }
             tfTiempo.setText(atrDias + " dias " + atrHoras + " horas " + atrMinutos + " minutos ");
             atrTotalApagar = gestor.totalPagar(tfTipoVehiculo.getText(), atrDias, atrHoras, atrMinutos);
-            
+
             tfValorPagar.setText(atrTotalApagar);
         } catch (Exception e) {
         }
@@ -724,13 +741,9 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         clsGestorFacturacion gestorFac = new clsGestorFacturacion();
         GestorParqueo gestor = new GestorParqueo();
         try {
-            clsRegistroParqueo registro = new clsRegistroParqueo(atrRegistro.getUsuario(), atrRegistro.getVehiculo(),
-                    atrRegistro.getCodigoBarras(), atrRegistro.getIdParqueadero(), atrRegistro.getNombresApellidosProp(),
-                    atrRegistro.getFechaHoraEntrada(), atrRegistro.getNumeroCascos(), atrRegistro.getNumeroCasillero(),
-                    atrRegistro.getDejaLlaves(), atrRegistro.getObservaciones());
-            registro.setFechaHoraSalida(fechaHoraSalida);
-            registro.setDejaFicha(dejaFicha.toString());
-            if (gestor.registrarSalida(registro)) {
+            atrRegistro.setFechaHoraSalida(fechaHoraSalida);
+            atrRegistro.setEntregaFicha(dejaFicha.toString());
+            if (gestor.registrarSalida(atrRegistro)) {
                 if (gestorFac.registrarFactura(new clsFactura(valorApagar, atrRegistro.getIdRegistroParqueo()))) {
                     JOptionPane.showMessageDialog(null, "Salida registrada correctamente.");
                 } else {
@@ -745,13 +758,13 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarSalidaMouseClicked
 
     private void chbDejaFichaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chbDejaFichaItemStateChanged
-         
+
         if (chbDejaFicha.getState()) {
             lblRecargo.setVisible(false);
             tfValorPagar.setText(atrTotalApagar);
         } else {
-            lblRecargo.setVisible(true);           
-            String total= Integer.toString(Integer.parseInt(atrTotalApagar)+5000);
+            lblRecargo.setVisible(true);
+            String total = Integer.toString(Integer.parseInt(atrTotalApagar) + 5000);
             tfValorPagar.setText(total);
         }
     }//GEN-LAST:event_chbDejaFichaItemStateChanged
@@ -809,6 +822,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     private javax.swing.JLabel lblFechaHoraSalida;
     private javax.swing.JLabel lblNumCascos;
     private javax.swing.JLabel lblObservaciones1;
+    private java.awt.Label lblParqueadero;
     private javax.swing.JLabel lblPlaca;
     private javax.swing.JLabel lblPropietario1;
     private java.awt.Label lblRecargo;

@@ -7,9 +7,9 @@ package co.unicauca.parqueadero.negocio;
  */
 public class clsFactura {
     
-    private String idFacturacion;
-    private String valorApagar;
-    private String idRegistroParqueo;
+    private String idFacturacion="";
+    private String valorApagar="";
+    private String idRegistroParqueo="";
 
     public clsFactura() {
         
