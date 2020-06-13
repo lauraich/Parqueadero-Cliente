@@ -5,10 +5,10 @@
  */
 package co.unicauca.parqueadero.acceso;
 
-import co.unicauca.parqueadero.negocio.clsFacturacion;
+import co.unicauca.parqueadero.negocio.clsFactura;
 
 
 public interface IFacturacionServicio {
-    public boolean registrarFactura(clsFacturacion prmFactura)throws Exception;
-    public String totalPagar(String prmDias,String prmHoras,String prmMinutos) throws Exception;
+    public boolean registrarFactura(clsFactura prmFactura)throws Exception;
+    public String totalPagar(String tipoVehiculo,String prmDias,String prmHoras,String prmMinutos) throws Exception;
 }

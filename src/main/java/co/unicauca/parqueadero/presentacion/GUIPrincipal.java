@@ -62,14 +62,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(10, 61, 98));
 
         lblPrincipal.setBackground(new java.awt.Color(255, 255, 255));
-        lblPrincipal.setFont(new java.awt.Font("Tahoma", 0, 35)); // NOI18N
+        lblPrincipal.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         lblPrincipal.setForeground(new java.awt.Color(255, 255, 255));
-        lblPrincipal.setText("Principal");
+        lblPrincipal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPrincipal.setText("Parqueadero");
 
         lblParqueadero.setBackground(new java.awt.Color(255, 255, 255));
         lblParqueadero.setFont(new java.awt.Font("Tahoma", 0, 30)); // NOI18N
         lblParqueadero.setForeground(new java.awt.Color(255, 255, 255));
-        lblParqueadero.setText("    Parqueadero");
+        lblParqueadero.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblParqueadero.setText("Parqueadero");
 
         btnRegistrar.setBackground(new java.awt.Color(10, 61, 98));
         btnRegistrar.setText("      Registrar Entrada/Salida");
@@ -111,19 +113,20 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblParqueadero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnRegistrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(lblPrincipal))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(btnAgregarFuncionarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
-                        .addComponent(btnAgregarParqueadero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(btnAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnAgregarFuncionarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                                .addComponent(btnAgregarParqueadero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblParqueadero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,9 +156,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(10, 61, 98));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblAdmin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblAdmin.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         lblAdmin.setForeground(new java.awt.Color(255, 255, 255));
-        lblAdmin.setText("Admi");
+        lblAdmin.setText("User");
         jPanel3.add(lblAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, -1, -1));
 
         jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 50));
@@ -167,7 +170,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-        GUIRegistrarParqueo registrar = new GUIRegistrarParqueo();
+        GUIRegistrarParqueo registrar = new GUIRegistrarParqueo(usuario,parqueadero);
         registrar.setVisible(true);
         registrar.pack();
         registrar.setLocationRelativeTo(null);

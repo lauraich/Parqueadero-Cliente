@@ -76,6 +76,22 @@ public class JSONServices {
         jsonObj.addProperty("Password",prmUser.getAtrPassword());
         return jsonObj.toString();
     }
+    public String parseToJSON(clsFactura prmFactura){
+        JsonObject jsonObj=new JsonObject();
+        jsonObj.addProperty("ID", prmFactura.getId());
+        jsonObj.addProperty("IdRegistro", prmFactura.getIdRegistroParqueo());
+        jsonObj.addProperty("valorApagar", prmFactura.getValorApagar());
+        return jsonObj.toString();
+    }
+    public clsFactura parseToFactura(String prmJSONFactura){
+        clsFactura objFactura=new clsFactura();
+        Gson gson = new Gson();
+        Properties properties = gson.fromJson(prmJSONFactura, Properties.class);
+        objFactura.setId(properties.getProperty("ID"));
+        objFactura.setRegistroParqueo(properties.getProperty("IdRegistro"));
+        objFactura.setValorApagar(properties.getProperty("valorApagar"));
+        return objFactura;
+    }
     public clsUsuario parseToUsuario(String prmJSONUser){
         clsUsuario objUser=new clsUsuario();
         Gson gson = new Gson();

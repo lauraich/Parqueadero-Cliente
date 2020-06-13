@@ -9,7 +9,7 @@ import co.unicauca.parqueadero.negocio.clsUsuario;
 import co.unicauca.parqueadero.negocio.GestorParqueo;
 import co.unicauca.parqueadero.negocio.Parqueadero;
 import co.unicauca.parqueadero.negocio.Vehiculo;
-import co.unicauca.parqueadero.negocio.clsFacturacion;
+import co.unicauca.parqueadero.negocio.clsFactura;
 import co.unicauca.parqueadero.negocio.clsGestorFacturacion;
 import co.unicauca.parqueadero.negocio.clsRegistroParqueo;
 import java.text.DateFormat;
@@ -23,14 +23,28 @@ import javax.swing.JOptionPane;
  */
 public class GUIRegistrarParqueo extends javax.swing.JFrame {
 
+    clsUsuario atrUsuario;
+    Parqueadero atrParqueadero;
     clsRegistroParqueo atrRegistro;
-    String atrDias ="";
+    String atrDias = "";
     String atrHoras = "";
     String atrMinutos = "";
 
     /**
      * Creates new form GUIRegistrarEntrada
+     *
+     * @param prmUsuario usuario que inicio sesión
+     * @param prmParqueadero parqueadero aen el cual trabaja el usuario
      */
+    public GUIRegistrarParqueo(clsUsuario prmUsuario, Parqueadero prmParqueadero) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        ocultarEntrada();
+        ocultarSalida();
+        atrUsuario = prmUsuario;
+        atrParqueadero = prmParqueadero;
+    }
+
     public GUIRegistrarParqueo() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -145,7 +159,6 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         lblPlaca.setText("Placa:");
         jPanel3.add(lblPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 27, -1, -1));
 
-        tfPlaca.setBackground(new java.awt.Color(170, 166, 157));
         tfPlaca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tfPlaca.setForeground(new java.awt.Color(241, 242, 246));
         tfPlaca.setEnabled(false);
@@ -391,18 +404,11 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         } else {
             numeroCascos = "0";
         }
-        clsUsuario usu = new clsUsuario();
-        usu.setAtrCedula("1005868290");
-        usu.setAtrNombres("Juan Fernando");
-        usu.setAtrApellidos("Campo Mosquera");
-        usu.setAtrLogin("fernando");
-        usu.setAtrRol("1");
-        usu.setAtrPassword("123321");
         Vehiculo vehiculo = new Vehiculo(placa, tipoVehiculo);
         try {
             if (placa.equals("") || codigo.equals("") || tipoVehiculo.equals("") || fechaHoraEntrada.equals("")) {
                 JOptionPane.showMessageDialog(null, "Debe diligenciar el formulario correctamente.");
-            } else if (gestor.registrarEntrada(new clsRegistroParqueo(usu, vehiculo, codigo, "1", propietario, fechaHoraEntrada, numeroCascos, casillero, dejaLlaves.toString(), Observaciones))) {
+            } else if (gestor.registrarEntrada(new clsRegistroParqueo(atrUsuario, vehiculo, codigo, atrParqueadero.getId(), propietario, fechaHoraEntrada, numeroCascos, casillero, dejaLlaves.toString(), Observaciones))) {
                 JOptionPane.showMessageDialog(null, "Entrada registrada correctamente.");
                 this.dispose();
             } else {
@@ -441,10 +447,11 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
-        tfPlaca.setText(tfCodigoPlaca.getText());
     }//GEN-LAST:event_btnBuscarMouseClicked
 
     private void rellenarSalida() {
+        
+        tfCodigo.setText(atrRegistro.getCodigoBarras());
         tfFechaHoraEntrada.setText(atrRegistro.getFechaHoraEntrada());
         tfCodigo.setText(atrRegistro.getCodigoBarras());
         tfPropietario.setText(atrRegistro.getNombresApellidosProp());
@@ -466,8 +473,8 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
 
     private void desplegarSalida() {
         lblRegistrar.setText("Registrar Salida");
+        tfPlaca.setText(atrRegistro.getVehiculo().getPlaca());
         lblPlaca.setVisible(true);
-        tfPlaca.setText(tfCodigoPlaca.getText());
         tfPlaca.setEnabled(false);
         tfPlaca.setVisible(true);
         lblCodigo.setVisible(true);
@@ -564,11 +571,20 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     private void desplegarEntrada() {
         lblRegistrar.setText("Registrar Entrada");
         lblPlaca.setVisible(true);
-        tfPlaca.setText(tfCodigoPlaca.getText());
+        if (rbCodigo.isSelected()) {
+            tfPlaca.setText("");
+            tfPlaca.setEnabled(true);
+            tfCodigo.setText(tfCodigoPlaca.getText());
+            tfCodigo.setEnabled(false);
+        } else {
+            tfPlaca.setText(tfCodigoPlaca.getText());
+            tfPlaca.setEnabled(false);
+            tfCodigo.setText("");
+            tfCodigo.setEnabled(true);
+        }
+
         tfPlaca.setVisible(true);
         lblCodigo.setVisible(true);
-        tfCodigo.setText("");
-        tfCodigo.setEnabled(true);
         tfCodigo.setVisible(true);
         lblTipoVehiculo1.setVisible(true);
         cbTipoVehiculo.setVisible(true);
@@ -647,17 +663,26 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     private void tfFechaHoraSalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfFechaHoraSalidaMouseClicked
         clsGestorFacturacion gestor = new clsGestorFacturacion();
         Date date = new Date();
-        DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+        DateFormat hourdateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         tfFechaHoraSalida.setText(hourdateFormat.format(date));
-        try {             
-        tiempoTranscurrido();
-        tfTiempo.setText(atrDias+" dias "+atrHoras+" horas "+atrMinutos+" minutos ");
-        String totalApagar = gestor.totalPagar(atrDias,atrHoras,atrMinutos);
-        tfValorPagar.setText(totalApagar);
+        try {
+            tiempoTranscurrido();
+            if (atrDias.equals("")) {
+                atrDias = "0";
+            }
+            if (atrHoras.equals("")) {
+                atrHoras = "0";
+            }
+            if (atrMinutos.equals("")) {
+                atrMinutos = "0";
+            }
+            tfTiempo.setText(atrDias + " dias " + atrHoras + " horas " + atrMinutos + " minutos ");
+            String totalApagar = gestor.totalPagar(tfTipoVehiculo.getText(), atrDias, atrHoras, atrMinutos);
+            tfValorPagar.setText(totalApagar);
         } catch (Exception e) {
         }
-       
-        
+
+
     }//GEN-LAST:event_tfFechaHoraSalidaMouseClicked
     private void tiempoTranscurrido() {
         Date tiempoSalida;
@@ -668,10 +693,10 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
             tiempoSalida = formato.parse(tfFechaHoraSalida.getText());
             tiempoEntrada = formato.parse(tfFechaHoraEntrada.getText());
             diferencia = (int) ((tiempoSalida.getTime() - tiempoEntrada.getTime()) / 1000);
-            
+
             if (diferencia > 86400) {
                 atrDias = String.valueOf((int) Math.floor(diferencia / 86400));
-                
+
                 diferencia = diferencia - (Integer.parseInt(atrDias) * 86400);
             }
             if (diferencia > 3600) {
@@ -679,7 +704,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
                 diferencia = diferencia - (Integer.parseInt(atrHoras) * 3600);
             }
             if (diferencia > 60) {
-                atrMinutos =String.valueOf((int) Math.floor(diferencia / 60));
+                atrMinutos = String.valueOf((int) Math.floor(diferencia / 60));
                 diferencia = diferencia - (Integer.parseInt(atrMinutos) * 60);
             }
         } catch (Exception e) {
@@ -699,14 +724,14 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
                     atrRegistro.getDejaLlaves(), atrRegistro.getObservaciones());
             registro.setFechaHoraSalida(fechaHoraSalida);
             registro.setDejaFicha(dejaFicha.toString());
-            if(gestor.registrarSalida(registro)){
-                if (gestorFac.registrarFactura(new clsFacturacion(valorApagar))) {
+            if (gestor.registrarSalida(registro)) {
+                if (gestorFac.registrarFactura(new clsFactura(valorApagar, atrRegistro.getIdRegistroParqueo()))) {
                     JOptionPane.showMessageDialog(null, "Salida registrada correctamente.");
-                }else{
-                     JOptionPane.showMessageDialog(null, "No se pudo realizar el registro de la salida.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo realizar el registro de la salida.");
                 }
-            }else{
-                 JOptionPane.showMessageDialog(null, "No se pudo realizar el registro de la salida.");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo realizar el registro de la salida.");
             }
         } catch (Exception e) {
         }

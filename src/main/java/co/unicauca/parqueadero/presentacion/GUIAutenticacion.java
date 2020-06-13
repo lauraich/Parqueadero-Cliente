@@ -230,7 +230,7 @@ public class GUIAutenticacion extends javax.swing.JFrame {
                 clsUsuario usuario = gestor.find(tfUsuario.getText().trim());
                 //TO DO cambiar metodo por uno que devuelva solo un parqueadero
                 if (cuantosParqueaderos(usuario.getAtrCedula()).size() == 1) {                    
-                    GUIPrincipal principal = new GUIPrincipal(usuario,cuantosParqueaderos(usuario.getAtrCedula()).get(1));
+                    GUIPrincipal principal = new GUIPrincipal(usuario,cuantosParqueaderos(usuario.getAtrCedula()).get(0));
                     principal.setVisible(true);
                     //principal.pack();
                     principal.setLocationRelativeTo(null);

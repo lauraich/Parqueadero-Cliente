@@ -18,11 +18,11 @@ public class clsGestorFacturacion {
     public clsGestorFacturacion() {
         this.factura = new FacturacionServicioImplSockets();
     }
-    public boolean registrarFactura(clsFacturacion prmFactura)throws Exception{
+    public boolean registrarFactura(clsFactura prmFactura)throws Exception{
         return factura.registrarFactura(prmFactura);
     }
-    public String totalPagar(String prmDias,String prmHoras,String prmMinutos) throws Exception{
-        return factura.totalPagar(prmDias,prmHoras,prmMinutos);
+    public String totalPagar(String tipoVehiculo,String prmDias,String prmHoras,String prmMinutos) throws Exception{
+        return factura.totalPagar(tipoVehiculo,prmDias,prmHoras,prmMinutos);
     }
     
 }

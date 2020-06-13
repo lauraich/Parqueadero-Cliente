@@ -5,7 +5,8 @@ package co.unicauca.parqueadero.negocio;
  *
  */
 public class clsRegistroParqueo {
-
+    
+    private String idRegistroParqueo = "";
     private Vehiculo atrVehiculo = null;
     private clsUsuario atrUsuario = null;
     private String atrCodigoBarras = "";
@@ -47,6 +48,14 @@ public class clsRegistroParqueo {
         atrObservaciones = prmObservaciones;
     }
     public clsRegistroParqueo() {
+    }
+
+    public String getIdRegistroParqueo() {
+        return idRegistroParqueo;
+    }
+
+    public void setIdRegistroParqueo(String idRegistroParqueo) {
+        this.idRegistroParqueo = idRegistroParqueo;
     }
 
     public String getIdParqueadero() {

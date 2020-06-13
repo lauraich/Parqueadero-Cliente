@@ -80,6 +80,26 @@ public class LoginServicioImplSockets implements ILoginServicio {
         System.out.println("respuesta" + respuesta);
         return respuesta;
     }
+    /**
+     * Lee el flujo del socket y lo convierte a String
+     *
+     * @param id identificador del cliente
+     * @return
+     * @throws IOException
+     */
+    private String leerFlujoEntradaSalida(String prmLogin) throws IOException {
+        String respuesta = "";
+        entradaDecorada = new Scanner(socket.getInputStream());
+        salidaDecorada = new PrintStream(socket.getOutputStream());
+        salidaDecorada.flush();
+        // Usando el protocolo de comunicación
+        salidaDecorada.println("findUser|" + prmLogin);
+        if (entradaDecorada.hasNextLine()) {
+            respuesta = entradaDecorada.nextLine();
+        }
+        System.out.println("respuesta" + respuesta);
+        return respuesta;
+    }
 
     private void cerrarFlujos() {
         salidaDecorada.close();
@@ -114,7 +134,7 @@ public class LoginServicioImplSockets implements ILoginServicio {
          String jsonCliente = null;
         try {
             conectar(IP_SERVIDOR, PUERTO);
-            jsonCliente = leerFlujoEntradaSalida("findUser|",login);
+            jsonCliente = leerFlujoEntradaSalida(login);
             cerrarFlujos();
             desconectar();
 

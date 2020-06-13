@@ -20,7 +20,7 @@ public class GestorParqueadero {
     }
     
     public List<Parqueadero> getParqueaderos(String cedula) throws Exception {
-        return parqueaderos.getParqueaderos();
+        return parqueaderos.getParqueaderos(cedula);
     }
     
     /**
