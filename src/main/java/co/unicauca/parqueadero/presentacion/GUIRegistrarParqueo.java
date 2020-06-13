@@ -746,6 +746,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
             if (gestor.registrarSalida(atrRegistro)) {
                 if (gestorFac.registrarFactura(new clsFactura(valorApagar, atrRegistro.getIdRegistroParqueo()))) {
                     JOptionPane.showMessageDialog(null, "Salida registrada correctamente.");
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo realizar el registro de la salida.");
                 }
