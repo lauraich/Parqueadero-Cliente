@@ -171,7 +171,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void interfazTipoUsuario(){
-        if(usuario.getAtrRol().equals("2")){
+        if(usuario.getAtrRol().equals("Funcionario")){
             btnAgregarParqueadero.setVisible(false);
             btnAgregarFuncionarios.setVisible(false);
             btnAjustes.setAlignmentX(btnAgregarParqueadero.getAlignmentX());
