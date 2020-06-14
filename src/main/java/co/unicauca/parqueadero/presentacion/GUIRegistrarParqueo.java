@@ -30,6 +30,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     String atrHoras = "";
     String atrMinutos = "";
     String atrTotalApagar = "";
+    boolean atrEstadoCodigo = false;
 
     /**
      * Creates new form GUIRegistrarEntrada
@@ -40,7 +41,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     public GUIRegistrarParqueo(clsUsuario prmUsuario, Parqueadero prmParqueadero) {
         initComponents();
         this.setLocationRelativeTo(null);
-         this.setTitle("Parqueadero "+prmParqueadero.getNombre());
+        this.setTitle("Parqueadero " + prmParqueadero.getNombre());
         ocultarEntrada();
         ocultarSalida();
         atrUsuario = prmUsuario;
@@ -50,7 +51,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     public GUIRegistrarParqueo() {
         initComponents();
         this.setLocationRelativeTo(null);
-         this.setTitle("Parqueadero "+atrParqueadero.getNombre());
+        this.setTitle("Parqueadero " + atrParqueadero.getNombre());
         ocultarEntrada();
         ocultarSalida();
     }
@@ -80,8 +81,6 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         tfPropietario = new javax.swing.JTextField();
         lblFechaHoraSalida = new javax.swing.JLabel();
         tfFechaHoraEntrada = new java.awt.TextField();
-        chbUno = new java.awt.Checkbox();
-        chbDos = new java.awt.Checkbox();
         lblCasillero1 = new javax.swing.JLabel();
         tfCasillero1 = new java.awt.TextField();
         lblObservaciones1 = new javax.swing.JLabel();
@@ -100,6 +99,8 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         chbDejaFicha = new java.awt.Checkbox();
         lblRecargo = new java.awt.Label();
         btnRegistrarSalida = new javax.swing.JButton();
+        rbUno = new javax.swing.JRadioButton();
+        rbDos = new javax.swing.JRadioButton();
         rbCodigo = new javax.swing.JRadioButton();
         rbPlaca = new javax.swing.JRadioButton();
 
@@ -162,7 +163,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
 
         lblPlaca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblPlaca.setForeground(new java.awt.Color(247, 241, 227));
-        lblPlaca.setText("Placa:");
+        lblPlaca.setText("Placa:*");
         jPanel3.add(lblPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 27, -1, -1));
 
         tfPlaca.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -172,7 +173,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
 
         lblTipoVehiculo1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblTipoVehiculo1.setForeground(new java.awt.Color(247, 241, 227));
-        lblTipoVehiculo1.setText("Tipo de Vehiculo:");
+        lblTipoVehiculo1.setText("Tipo de Vehiculo:*");
         jPanel3.add(lblTipoVehiculo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 81, -1, -1));
 
         cbTipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Carro", "Moto" }));
@@ -202,26 +203,6 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         });
         jPanel3.add(tfFechaHoraEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 170, 170, -1));
 
-        chbUno.setEnabled(false);
-        chbUno.setForeground(new java.awt.Color(255, 255, 255));
-        chbUno.setLabel("Uno");
-        chbUno.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chbUnoMouseClicked(evt);
-            }
-        });
-        jPanel3.add(chbUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 223, -1, 29));
-
-        chbDos.setEnabled(false);
-        chbDos.setForeground(new java.awt.Color(255, 255, 255));
-        chbDos.setLabel("Dos");
-        chbDos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                chbDosMouseClicked(evt);
-            }
-        });
-        jPanel3.add(chbDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 262, -1, -1));
-
         lblCasillero1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblCasillero1.setForeground(new java.awt.Color(247, 241, 227));
         lblCasillero1.setText("Casillero No:");
@@ -244,15 +225,20 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
 
         lblCodigo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblCodigo.setForeground(new java.awt.Color(247, 241, 227));
-        lblCodigo.setText("Código:");
+        lblCodigo.setText("Código:*");
         jPanel3.add(lblCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(342, 30, -1, -1));
 
         tfCodigo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tfCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tfCodigoMouseExited(evt);
+            }
+        });
         jPanel3.add(tfCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 27, 149, -1));
 
         lblFechaHoraEntrada.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblFechaHoraEntrada.setForeground(new java.awt.Color(247, 241, 227));
-        lblFechaHoraEntrada.setText("Fecha y Hora de Entrada:");
+        lblFechaHoraEntrada.setText("Fecha y Hora de Entrada:*");
         jPanel3.add(lblFechaHoraEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 174, -1, -1));
 
         tfFechaHoraSalida.setEditable(false);
@@ -306,6 +292,38 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         });
         jPanel3.add(btnRegistrarSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, 115, -1));
 
+        rbUno.setBackground(new java.awt.Color(10, 61, 98));
+        rbUno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        rbUno.setForeground(new java.awt.Color(255, 255, 255));
+        rbUno.setText("Uno");
+        rbUno.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rbUnoItemStateChanged(evt);
+            }
+        });
+        rbUno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbUnoMouseClicked(evt);
+            }
+        });
+        jPanel3.add(rbUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 50, -1));
+
+        rbDos.setBackground(new java.awt.Color(10, 61, 98));
+        rbDos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        rbDos.setForeground(new java.awt.Color(255, 255, 255));
+        rbDos.setText("Dos");
+        rbDos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rbDosItemStateChanged(evt);
+            }
+        });
+        rbDos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbDosMouseClicked(evt);
+            }
+        });
+        jPanel3.add(rbDos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 270, 50, -1));
+
         rbCodigo.setBackground(new java.awt.Color(250, 152, 58));
         rbCodigo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         rbCodigo.setForeground(new java.awt.Color(255, 255, 255));
@@ -313,6 +331,11 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         rbCodigo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 rbCodigoItemStateChanged(evt);
+            }
+        });
+        rbCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbCodigoMouseClicked(evt);
             }
         });
 
@@ -324,6 +347,11 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         rbPlaca.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 rbPlacaItemStateChanged(evt);
+            }
+        });
+        rbPlaca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rbPlacaMouseClicked(evt);
             }
         });
 
@@ -386,43 +414,44 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     private void btnRegistrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrar1MouseClicked
 
         String placa = tfCodigoPlaca.getText().trim();
-
         String codigo = tfCodigo.getText().trim();
-
         String propietario = tfPropietario.getText().trim();
-
         String tipoVehiculo = cbTipoVehiculo.getSelectedItem().toString();
-
         String fechaHoraEntrada = tfFechaHoraEntrada.getText().trim();
-
         String numeroCascos;
-
         String casillero = tfCasillero1.getText().trim();
-
         String Observaciones = tfObservaciones.getText().trim();
-
         Boolean dejaLlaves = chbLlaves1.getState();
-
         GestorParqueo gestor = new GestorParqueo();
         if (casillero.equals("")) {
             casillero = "null";
         }
-        if (chbUno.getState()) {
+        if (rbUno.isSelected()) {
             numeroCascos = "1";
-        } else if (chbDos.getState()) {
+        } else if (rbDos.isSelected()) {
             numeroCascos = "2";
         } else {
             numeroCascos = "0";
         }
         Vehiculo vehiculo = new Vehiculo(placa, tipoVehiculo);
         try {
-            if (placa.equals("") || codigo.equals("") || tipoVehiculo.equals("") || fechaHoraEntrada.equals("")) {
-                JOptionPane.showMessageDialog(null, "Debe diligenciar el formulario correctamente.");
-            } else if (gestor.registrarEntrada(new clsRegistroParqueo(atrUsuario, vehiculo, codigo, atrParqueadero.getId(), propietario, fechaHoraEntrada, numeroCascos, casillero, dejaLlaves.toString(), Observaciones))) {
-                JOptionPane.showMessageDialog(null, "Entrada registrada correctamente.");
-                this.dispose();
+            if (!placa.equals("") && !codigo.equals("") && !tipoVehiculo.equals("") && !fechaHoraEntrada.equals("")) {
+                if(atrEstadoCodigo){
+                    if (tipoVehiculo.equals("Moto") && casillero.equals("null")) {
+                    JOptionPane.showMessageDialog(null, "Los campos marcados con * son obligatorios.");
+                } else {
+                    if (gestor.registrarEntrada(new clsRegistroParqueo(atrUsuario, vehiculo, codigo, atrParqueadero.getId(), propietario, fechaHoraEntrada, numeroCascos, casillero, dejaLlaves.toString(), Observaciones))) {
+                        JOptionPane.showMessageDialog(null, "Entrada registrada correctamente.");
+                        this.dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se pudo realizar el registro de la entrada.");
+                    }
+                }
+                }else{
+                      JOptionPane.showMessageDialog(null, "No se pudo realizar el registro de la entrada debido a que esta ingresando un codigo de barras invalido.");
+                }                
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo realizar el registro de la entrada.");
+                JOptionPane.showMessageDialog(null, "Los campos marcados con * son obligatorios.");
             }
 
         } catch (Exception e) {
@@ -567,8 +596,8 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         lblFechaHoraSalida.setVisible(false);
         tfFechaHoraSalida.setVisible(false);
         lblNumCascos.setVisible(false);
-        chbUno.setVisible(false);
-        chbDos.setVisible(false);
+        rbUno.setVisible(false);
+        rbDos.setVisible(false);
         lblCasillero1.setVisible(false);
         tfCasillero1.setVisible(false);
         lblObservaciones1.setVisible(false);
@@ -608,29 +637,35 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         tfFechaHoraEntrada.setVisible(true);
         tfFechaHoraEntrada.setText("");
         lblNumCascos.setVisible(true);
-        chbUno.setVisible(true);
-        chbDos.setVisible(true);
+        rbUno.setVisible(true);
+        rbDos.setVisible(true);
         lblCasillero1.setVisible(true);
         tfCasillero1.setVisible(true);
+        tfCasillero1.setText("");
         lblObservaciones1.setVisible(true);
         tfObservaciones.setVisible(true);
+        chbLlaves1.enable(true);
         chbLlaves1.setVisible(true);
+        chbLlaves1.setState(false);
         btnRegistrar1.setVisible(true);
         btnRegistrarCancel1.setVisible(true);
     }
 
     private void cbTipoVehiculoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbTipoVehiculoItemStateChanged
         if (cbTipoVehiculo.getSelectedItem().equals("Moto")) {
+            lblNumCascos.setText("Número de Cascos:*");
+            lblCasillero1.setText("Casillero No:*");
+            rbUno.setSelected(true);
             lblNumCascos.setEnabled(true);
-            chbUno.setEnabled(true);
-            chbDos.setEnabled(true);
+            rbUno.setEnabled(true);
+            rbDos.setEnabled(true);
             lblCasillero1.setEnabled(true);
             tfCasillero1.setEnabled(true);
             tfCasillero1.setEditable(true);
         } else {
             lblNumCascos.setEnabled(false);
-            chbUno.setEnabled(false);
-            chbDos.setEnabled(false);
+            rbUno.setEnabled(false);
+            rbDos.setEnabled(false);
             lblCasillero1.setEnabled(false);
             tfCasillero1.setEnabled(false);
             tfCasillero1.setEditable(false);
@@ -655,20 +690,6 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
             rbPlaca.setSelected(false);
         }
     }//GEN-LAST:event_rbPlacaItemStateChanged
-
-    private void chbUnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chbUnoMouseClicked
-        if (!chbUno.getState()) {
-            chbDos.setState(false);
-        }
-
-    }//GEN-LAST:event_chbUnoMouseClicked
-
-    private void chbDosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_chbDosMouseClicked
-        if (!chbDos.getState()) {
-            chbUno.setState(false);
-        }
-
-    }//GEN-LAST:event_chbDosMouseClicked
 
     private void tfFechaHoraSalidaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfFechaHoraSalidaMouseClicked
         clsGestorFacturacion gestor = new clsGestorFacturacion();
@@ -758,6 +779,56 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_chbDejaFichaItemStateChanged
 
+    private void rbUnoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbUnoItemStateChanged
+        if (rbUno.isSelected()) {
+            rbDos.setSelected(false);
+        }
+    }//GEN-LAST:event_rbUnoItemStateChanged
+
+    private void rbDosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rbDosItemStateChanged
+        if (rbDos.isSelected()) {
+            rbUno.setSelected(false);
+        }
+    }//GEN-LAST:event_rbDosItemStateChanged
+
+    private void rbUnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbUnoMouseClicked
+        if (rbUno.isSelected() == false && rbDos.isSelected() == false) {
+            rbUno.setSelected(true);
+        }
+    }//GEN-LAST:event_rbUnoMouseClicked
+
+    private void rbDosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbDosMouseClicked
+        if (rbUno.isSelected() == false && rbDos.isSelected() == false) {
+            rbDos.setSelected(true);
+        }
+    }//GEN-LAST:event_rbDosMouseClicked
+
+    private void rbPlacaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbPlacaMouseClicked
+        if (rbPlaca.isSelected() == false && rbCodigo.isSelected() == false) {
+            rbPlaca.setSelected(true);
+        }
+    }//GEN-LAST:event_rbPlacaMouseClicked
+
+    private void rbCodigoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbCodigoMouseClicked
+        if (rbPlaca.isSelected() == false && rbCodigo.isSelected() == false) {
+            rbCodigo.setSelected(true);
+        }
+    }//GEN-LAST:event_rbCodigoMouseClicked
+
+    private void tfCodigoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfCodigoMouseExited
+        GestorParqueo gestor = new GestorParqueo();
+        try {
+            if (gestor.buscarXcodigo(tfCodigo.getText(), atrParqueadero.getId()) != null) {
+                atrEstadoCodigo=false;
+                JOptionPane.showMessageDialog(null, "El codigo ingresado ya existe","Codigo Invalido",JOptionPane.ERROR_MESSAGE);                
+            }else{
+                atrEstadoCodigo=true;
+            }
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_tfCodigoMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -801,9 +872,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarSalida;
     private javax.swing.JComboBox<String> cbTipoVehiculo;
     private java.awt.Checkbox chbDejaFicha;
-    private java.awt.Checkbox chbDos;
     private java.awt.Checkbox chbLlaves1;
-    private java.awt.Checkbox chbUno;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblCasillero1;
     private javax.swing.JLabel lblCodigo;
@@ -820,7 +889,9 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     private javax.swing.JLabel lblValorPagar;
     private javax.swing.JPanel pnlRegistrarEntrada;
     private javax.swing.JRadioButton rbCodigo;
+    private javax.swing.JRadioButton rbDos;
     private javax.swing.JRadioButton rbPlaca;
+    private javax.swing.JRadioButton rbUno;
     private java.awt.TextField tfCasillero1;
     private javax.swing.JTextField tfCodigo;
     private javax.swing.JTextField tfCodigoPlaca;

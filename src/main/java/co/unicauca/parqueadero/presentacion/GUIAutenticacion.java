@@ -228,7 +228,8 @@ public class GUIAutenticacion extends javax.swing.JFrame {
         clsGestorUsuarios gestor = new clsGestorUsuarios();
 
         try {
-            if (seg.login(tfUsuario.getText().trim(), tfContraseña.getText().trim())) {
+            if (!tfUsuario.getText().equals("") && !tfContraseña.getText().equals("")) {
+                if (seg.login(tfUsuario.getText().trim(), tfContraseña.getText().trim())) {
                 clsUsuario usuario = gestor.find(tfUsuario.getText().trim());
                 //TO DO cambiar metodo por uno que devuelva solo un parqueadero
                 if (cuantosParqueaderos(usuario.getAtrCedula()).size() == 1) {                    
@@ -244,6 +245,9 @@ public class GUIAutenticacion extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrecta");
             }
+            }else{
+                 JOptionPane.showMessageDialog(null, "Los campos de Usuario y Contraseña son obligatorios");
+            }            
         } catch (Exception e) {
         }
 
