@@ -275,6 +275,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         lblValorPagar.setText("Valor a Pagar:");
         jPanel3.add(lblValorPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 90, -1));
 
+        tfValorPagar.setEditable(false);
         tfValorPagar.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         jPanel3.add(tfValorPagar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 170, -1));
 
