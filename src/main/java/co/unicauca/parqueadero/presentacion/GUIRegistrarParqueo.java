@@ -23,14 +23,14 @@ import javax.swing.JOptionPane;
  */
 public class GUIRegistrarParqueo extends javax.swing.JFrame {
 
-    clsUsuario atrUsuario;
-    Parqueadero atrParqueadero;
-    clsRegistroParqueo atrRegistro;
-    String atrDias = "";
-    String atrHoras = "";
-    String atrMinutos = "";
-    String atrTotalApagar = "";
-    boolean atrEstadoCodigo = false;
+    private clsUsuario atrUsuario;
+    private Parqueadero atrParqueadero;
+    private clsRegistroParqueo atrRegistro;
+    private String atrDias = "";
+    private String atrHoras = "";
+    private String atrMinutos = "";
+    private String atrTotalApagar = "";
+    private boolean atrEstadoCodigo = false;
 
     /**
      * Creates new form GUIRegistrarEntrada

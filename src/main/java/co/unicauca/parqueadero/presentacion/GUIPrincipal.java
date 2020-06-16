@@ -15,8 +15,8 @@ import co.unicauca.parqueadero.presentacion.GUIRegistrarParqueo;
  * Interfaz gráfica Principal
  */
 public class GUIPrincipal extends javax.swing.JFrame {
-    clsUsuario usuario;
-    Parqueadero parqueadero;
+    private clsUsuario usuario;
+    private Parqueadero parqueadero;
     /**
      * Creates new form GUIPrincipal
      */

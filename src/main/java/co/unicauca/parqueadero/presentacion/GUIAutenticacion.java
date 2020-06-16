@@ -251,13 +251,6 @@ public class GUIAutenticacion extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
-// Provisional
-        /*GUIPrincipal principal = new GUIPrincipal();
-        principal.setVisible(true);
-        //principal.pack();
-        principal.setLocationRelativeTo(null);
-        principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();*/
     }//GEN-LAST:event_btnLoginMouseClicked
 
     private void btnloginCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginCancelMouseClicked
