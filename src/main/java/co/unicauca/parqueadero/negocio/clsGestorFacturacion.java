@@ -42,12 +42,13 @@ public class clsGestorFacturacion {
      * @param prmDias parametro que contiene el número de días transcurridos
      * @param prmHoras parametro que contiene el número de horas transcurridos
      * @param prmMinutos parametro que contiene el número de minutos
+     * @param prmSegundos parametro que contiene el número de segundos
      * @return String que contiene el calculo del valor a pagar
      * @throws java.lang.Exception la excepcio se lanza cuando no logra conexión
      * con el servidor
      */
-    public String totalPagar(String tipoVehiculo, String prmDias, String prmHoras, String prmMinutos) throws Exception {
-        return factura.totalPagar(tipoVehiculo, prmDias, prmHoras, prmMinutos);
+    public String totalPagar(String tipoVehiculo, String prmDias, String prmHoras, String prmMinutos,String prmSegundos) throws Exception {
+        return factura.totalPagar(tipoVehiculo, prmDias, prmHoras, prmMinutos,prmSegundos);
     }
 
 }

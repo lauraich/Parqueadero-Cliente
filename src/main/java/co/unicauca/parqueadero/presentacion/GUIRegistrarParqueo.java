@@ -29,6 +29,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     private String atrDias = "";
     private String atrHoras = "";
     private String atrMinutos = "";
+    private String atrSegundos = "";
     private String atrTotalApagar = "";
     private boolean atrEstadoCodigo = false;
 
@@ -745,8 +746,11 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
             if (atrMinutos.equals("")) {
                 atrMinutos = "0";
             }
-            tfTiempo.setText(atrDias + " dias " + atrHoras + " horas " + atrMinutos + " minutos ");
-            atrTotalApagar = gestor.totalPagar(tfTipoVehiculo.getText(), atrDias, atrHoras, atrMinutos);
+             if (atrSegundos.equals("")) {
+                atrSegundos = "0";
+            }
+            tfTiempo.setText(atrDias + " dias " + atrHoras + " horas " + atrMinutos + " minutos "+ atrSegundos + " segundos");
+            atrTotalApagar = gestor.totalPagar(tfTipoVehiculo.getText(), atrDias, atrHoras, atrMinutos,atrSegundos);
 
             tfValorPagar.setText(atrTotalApagar);
         } catch (Exception e) {
@@ -781,6 +785,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
                 atrMinutos = String.valueOf((int) Math.floor(diferencia / 60));
                 diferencia = diferencia - (Integer.parseInt(atrMinutos) * 60);
             }
+            atrSegundos=String.valueOf(diferencia);
         } catch (Exception e) {
         }
 

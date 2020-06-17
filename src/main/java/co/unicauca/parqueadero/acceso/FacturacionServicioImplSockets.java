@@ -58,17 +58,18 @@ public class FacturacionServicioImplSockets implements IFacturacionServicio {
      * @param prmDias parametro que contiene el número de días transcurridos
      * @param prmHoras parametro que contiene el número de horas transcurridos
      * @param prmMinutos parametro que contiene el número de minutos
+     * @param prmSegundos parametro que contiene el número de segundos
      * transcurridos
      * @return String
      * @throws IOException
      */
-    private String leerFlujoEntradaSalida(String metodo, String prmTipoVehiculo, String prmDias, String prmHoras, String prmMinutos) throws IOException {
+    private String leerFlujoEntradaSalida(String metodo, String prmTipoVehiculo, String prmDias, String prmHoras, String prmMinutos,String prmSegundos) throws IOException {
         String respuesta = "";
         entradaDecorada = new Scanner(socket.getInputStream());
         salidaDecorada = new PrintStream(socket.getOutputStream());
         salidaDecorada.flush();
         // Usando el protocolo de comunicación
-        salidaDecorada.println(metodo + prmTipoVehiculo + "|" + prmDias + "|" + prmHoras + "|" + prmMinutos);
+        salidaDecorada.println(metodo + prmTipoVehiculo + "|" + prmDias + "|" + prmHoras + "|" + prmMinutos+ "|"+ prmSegundos);
         if (entradaDecorada.hasNextLine()) {
             respuesta = entradaDecorada.nextLine();
         }
@@ -119,11 +120,11 @@ public class FacturacionServicioImplSockets implements IFacturacionServicio {
      * @throws Exception
      */
     @Override
-    public String totalPagar(String prmTipoVehiculo, String prmDias, String prmHoras, String prmMinutos) throws Exception {
+    public String totalPagar(String prmTipoVehiculo, String prmDias, String prmHoras, String prmMinutos,String prmSegundos) throws Exception {
         String jsonCliente = null;
         try {
             conectar(IP_SERVIDOR, PUERTO);
-            jsonCliente = leerFlujoEntradaSalida("valorApagar|", prmTipoVehiculo, prmDias, prmHoras, prmMinutos);
+            jsonCliente = leerFlujoEntradaSalida("valorApagar|", prmTipoVehiculo, prmDias, prmHoras, prmMinutos,prmSegundos);
             cerrarFlujos();
             desconectar();
 

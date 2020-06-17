@@ -15,5 +15,5 @@ public interface IFacturacionServicio {
 
     public boolean registrarFactura(clsFactura prmFactura) throws Exception;
 
-    public String totalPagar(String tipoVehiculo, String prmDias, String prmHoras, String prmMinutos) throws Exception;
+    public String totalPagar(String tipoVehiculo, String prmDias, String prmHoras, String prmMinutos,String prmSegundos) throws Exception;
 }
