@@ -18,7 +18,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
- * Interfaz gráfica de Registrar Entrada de vehiculo
+ * Interfaz gráfica de Registrar Parqueo de vehiculo
  *
  */
 public class GUIRegistrarParqueo extends javax.swing.JFrame {
@@ -36,7 +36,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
      * Creates new form GUIRegistrarEntrada
      *
      * @param prmUsuario usuario que inicio sesión
-     * @param prmParqueadero parqueadero aen el cual trabaja el usuario
+     * @param prmParqueadero parqueadero en el cual trabaja el usuario
      */
     public GUIRegistrarParqueo(clsUsuario prmUsuario, Parqueadero prmParqueadero) {
         initComponents();
@@ -48,6 +48,10 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         atrParqueadero = prmParqueadero;
     }
 
+    /**
+     * Constructor
+     *
+     */
     public GUIRegistrarParqueo() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -502,6 +506,10 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBuscarMouseClicked
 
+    /**
+     * Agrega los valores de entrada para visualizar en la salida de un vehiculo
+     *
+     */
     private void rellenarSalida() {
 
         tfCodigo.setText(atrRegistro.getCodigoBarras());
@@ -524,6 +532,10 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Muestra el formulario de salida de vehiculo
+     *
+     */
     private void desplegarSalida() {
         lblRegistrar.setText("Registrar Salida");
         tfPlaca.setText(atrRegistro.getVehiculo().getPlaca());
@@ -565,6 +577,10 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         btnRegistrarCancel1.setVisible(true);
     }
 
+    /**
+     * Oculta el formulario de salida del vehiculo
+     *
+     */
     private void ocultarSalida() {
 
         lblPlaca.setVisible(false);
@@ -596,6 +612,10 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         tfValorPagar.setVisible(false);
     }
 
+    /**
+     * Oculta el formulario de entrada del vehiculo
+     *
+     */
     private void ocultarEntrada() {
         lblPlaca.setVisible(false);
         tfPlaca.setVisible(false);
@@ -621,6 +641,10 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
         btnRegistrarCancel1.setVisible(false);
     }
 
+    /**
+     * Despliega el formulario de salida del vehiculo
+     *
+     */
     private void desplegarEntrada() {
         lblRegistrar.setText("Registrar Entrada");
         lblPlaca.setVisible(true);
@@ -730,6 +754,10 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_tfFechaHoraSalidaMouseClicked
+    /**
+     * Calcula el tiempo transcurrido que el vehiculo pasó en el parqueadero
+     *
+     */
     private void tiempoTranscurrido() {
         Date tiempoSalida;
         Date tiempoEntrada;
@@ -777,7 +805,7 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo realizar el registro de la salida.");
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Los campos marcados con * son obligatorios.");
             }
         } catch (Exception e) {
@@ -836,14 +864,14 @@ public class GUIRegistrarParqueo extends javax.swing.JFrame {
     private void tfCodigoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tfCodigoMouseExited
         GestorParqueo gestor = new GestorParqueo();
         try {
-            if(tfCodigo.isEnabled()){
-                 if (gestor.buscarXcodigo(tfCodigo.getText(), atrParqueadero.getId()) != null) {
-                atrEstadoCodigo = false;
-                JOptionPane.showMessageDialog(null, "El codigo ingresado ya existe", "Codigo Invalido", JOptionPane.ERROR_MESSAGE);
-            } else {
-                atrEstadoCodigo = true;
+            if (tfCodigo.isEnabled()) {
+                if (gestor.buscarXcodigo(tfCodigo.getText(), atrParqueadero.getId()) != null) {
+                    atrEstadoCodigo = false;
+                    JOptionPane.showMessageDialog(null, "El codigo ingresado ya existe", "Codigo Invalido", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    atrEstadoCodigo = true;
+                }
             }
-            }           
         } catch (Exception e) {
         }
 

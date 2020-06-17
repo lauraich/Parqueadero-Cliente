@@ -1,13 +1,11 @@
 package co.unicauca.parqueadero.acceso;
 
-import co.unicauca.parqueadero.negocio.GestorParqueadero;
 import co.unicauca.parqueadero.negocio.Parqueadero;
 import co.unicauca.parqueadero.transversal.JSONServices;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
@@ -92,6 +90,12 @@ public class ParqueaderoServicioImplSockets implements IParqueaderoServicio {
         return null;
     }
 
+    /**
+     * Obtiene una lista de parqueaderos
+     *
+     * @throws java.lang.Exception cuando no pueda conectarse con el servidor
+     * @return list lista de parqueaderos
+     */
     @Override
     public List<Parqueadero> getParqueaderos(String cedula) throws Exception {
         String jsonCliente = null;
@@ -206,6 +210,13 @@ public class ParqueaderoServicioImplSockets implements IParqueaderoServicio {
         return respuesta;
     }
 
+    /**
+     * Lee el flujo del socket y lo convierte a String
+     *
+     * @param metodo metodo que utiliza del servidor
+     * @return
+     * @throws IOException
+     */
     private String leerFlujoEntradaSalida(String metodo) throws IOException {
         String respuesta = "";
         entradaDecorada = new Scanner(socket.getInputStream());
@@ -220,11 +231,17 @@ public class ParqueaderoServicioImplSockets implements IParqueaderoServicio {
         return respuesta;
     }
 
+    /**
+     * Cierra flujos de entrada y salida
+     */
     private void cerrarFlujos() {
         salidaDecorada.close();
         entradaDecorada.close();
     }
 
+    /**
+     * Desconecta la conexión
+     */
     private void desconectar() {
         try {
             socket.close();

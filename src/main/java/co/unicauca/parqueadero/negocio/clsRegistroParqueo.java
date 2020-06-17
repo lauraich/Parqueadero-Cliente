@@ -17,7 +17,7 @@ public class clsRegistroParqueo {
     private String atrDejaLlaves = "";
     private String atrObservaciones = "";
     private String atrIdParqueadero = "";
-    private String atrEntregaFicha="";
+    private String atrEntregaFicha = "";
     private String idRegistroParqueo = "";
 
     /**
@@ -48,6 +48,9 @@ public class clsRegistroParqueo {
         atrObservaciones = prmObservaciones;
     }
 
+    /**
+     * Constructor no parametrizado
+     */
     public clsRegistroParqueo() {
     }
 

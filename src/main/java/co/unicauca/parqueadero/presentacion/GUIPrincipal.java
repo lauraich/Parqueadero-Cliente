@@ -9,27 +9,35 @@ import co.unicauca.parqueadero.negocio.Parqueadero;
 import co.unicauca.parqueadero.negocio.clsUsuario;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import co.unicauca.parqueadero.presentacion.GUIRegistrarParqueo;
 
 /**
  * Interfaz gráfica Principal
  */
 public class GUIPrincipal extends javax.swing.JFrame {
+
     private clsUsuario usuario;
     private Parqueadero parqueadero;
+
     /**
      * Creates new form GUIPrincipal
      */
     public GUIPrincipal() {
         initComponents();
-        
+
     }
 
-    public GUIPrincipal(clsUsuario prmUsuario,Parqueadero prmParqueadero) {
+    /**
+     * Constructor parametrizado
+     *
+     * @param prmUsuario usuario que esta logeado
+     * @param prmParqueadero parqueadero en el cual trabaja el usuario
+     *
+     */
+    public GUIPrincipal(clsUsuario prmUsuario, Parqueadero prmParqueadero) {
         initComponents();
-        usuario=prmUsuario;
-        parqueadero=prmParqueadero;
-        this.setTitle("Parqueadero "+parqueadero.getNombre());
+        usuario = prmUsuario;
+        parqueadero = prmParqueadero;
+        this.setTitle("Parqueadero " + parqueadero.getNombre());
         interfazTipoUsuario();
         lblAdmin.setText(usuario.getAtrLogin());
         lblAdmin.setName(usuario.getAtrLogin());
@@ -175,9 +183,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(838, 477));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void interfazTipoUsuario(){
-        if(usuario.getAtrRol().equals("Funcionario")){
+
+    /**
+     * muestra la interfaz de acuerdo al rol del usuario
+     *
+     */
+    private void interfazTipoUsuario() {
+        if (usuario.getAtrRol().equals("Funcionario")) {
             btnAgregarParqueadero.setVisible(false);
             btnAgregarFuncionarios.setVisible(false);
             btnAjustes.setAlignmentX(btnAgregarParqueadero.getAlignmentX());
@@ -186,8 +198,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
             btnCerrarSesion.setAlignmentY(btnAgregarFuncionarios.getAlignmentY());
         }
     }
+    
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-        GUIRegistrarParqueo registrar = new GUIRegistrarParqueo(usuario,parqueadero);
+        GUIRegistrarParqueo registrar = new GUIRegistrarParqueo(usuario, parqueadero);
         registrar.setVisible(true);
         registrar.pack();
         registrar.setLocationRelativeTo(null);
@@ -210,7 +223,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         login.setLocationRelativeTo(null);
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_btnCerrarSesionMouseClicked
-    
+
     /**
      * @param args the command line arguments
      */

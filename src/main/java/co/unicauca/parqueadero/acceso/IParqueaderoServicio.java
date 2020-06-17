@@ -9,7 +9,7 @@ import java.util.List;
 public interface IParqueaderoServicio {
 
     public List<Parqueadero> getParqueaderos() throws Exception;
-     
+
     public List<Parqueadero> getParqueaderos(String cedula) throws Exception;
 
     public Parqueadero find(String id) throws Exception;

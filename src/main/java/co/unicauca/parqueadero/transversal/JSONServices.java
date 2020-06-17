@@ -7,7 +7,6 @@ package co.unicauca.parqueadero.transversal;
 
 import co.unicauca.parqueadero.negocio.*;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +27,13 @@ public class JSONServices {
         return atrParseToJSON;
     }
 
+    /**
+     * Realiza el parse de una lista de parqueaderos a un objeto JSON
+     *
+     * @param prmParqueaderos listade parqueaderos
+     * @return String objeto json
+     *
+     */
     public String parseToJSON(List<Parqueadero> prmParqueaderos) {
         JsonObject jsonObj = new JsonObject();
         int i = 1;
@@ -39,10 +45,24 @@ public class JSONServices {
         return jsonObj.toString();
     }
 
+    /**
+     * Realiza el parse de un objeto parqueadero a un objeto JSON
+     *
+     * @param prmParqueadero objeto parqueadero
+     * @return String objeto json
+     *
+     */
     public String parseToJSON(Parqueadero prmParqueadero) {
         return parseToJson(prmParqueadero).toString();
     }
 
+    /**
+     * Realiza el parse de un objeto parqueadero a un objeto JSON
+     *
+     * @param prmParqueaderos objeto parqueaderos
+     * @return JsonObject objeto Json
+     *
+     */
     private JsonObject parseToJson(Parqueadero prmParqueadero) {
         JsonObject jsonObj = new JsonObject();
         jsonObj.addProperty("NombreParqueadero", prmParqueadero.getNombre());
@@ -52,6 +72,13 @@ public class JSONServices {
         return jsonObj;
     }
 
+    /**
+     * Realiza el parse de un objeto de registro parqueo a un objeto JSON
+     *
+     * @param prmRegistro registro parqueo
+     * @return String
+     *
+     */
     public String parseToJson(clsRegistroParqueo prmRegistro) {
         JsonObject jsonObj = new JsonObject();
         jsonObj.addProperty("Vehiculo", parseToJSON(prmRegistro.getVehiculo()));
@@ -65,11 +92,18 @@ public class JSONServices {
         jsonObj.addProperty("DejaLlaves", prmRegistro.getDejaLlaves());
         jsonObj.addProperty("Observaciones", prmRegistro.getObservaciones());
         jsonObj.addProperty("IdParqueadero", prmRegistro.getIdParqueadero());
-        jsonObj.addProperty("EntregaFicha",prmRegistro.getEntregaFicha());
+        jsonObj.addProperty("EntregaFicha", prmRegistro.getEntregaFicha());
         jsonObj.addProperty("IdRegistro", prmRegistro.getIdRegistroParqueo());
         return jsonObj.toString();
     }
 
+    /**
+     * Realiza el parse de un objeto vehiculo a un objeto JSON
+     *
+     * @param prmVehiculo objeto vehiculo
+     * @return String
+     *
+     */
     public String parseToJSON(Vehiculo prmVehiculo) {
         JsonObject jsonObj = new JsonObject();
         jsonObj.addProperty("Placa", prmVehiculo.getPlaca());
@@ -77,6 +111,13 @@ public class JSONServices {
         return jsonObj.toString();
     }
 
+    /**
+     * Realiza el parse de un objeto usuario a un objeto JSON
+     *
+     * @param prmUser objeto usuario
+     * @return String
+     *
+     */
     public String parseToJSON(clsUsuario prmUser) {
         JsonObject jsonObj = new JsonObject();
         jsonObj.addProperty("Cedula", prmUser.getAtrCedula());
@@ -88,6 +129,13 @@ public class JSONServices {
         return jsonObj.toString();
     }
 
+    /**
+     * Realiza el parse de un objeto factura a un objeto JSON
+     *
+     * @param prmFactura objeto tipo factura
+     * @return String
+     *
+     */
     public String parseToJSON(clsFactura prmFactura) {
         JsonObject jsonObj = new JsonObject();
         jsonObj.addProperty("ID", prmFactura.getId());
@@ -96,6 +144,13 @@ public class JSONServices {
         return jsonObj.toString();
     }
 
+    /**
+     * Realiza el parse de un objeto JSON a un objeto factura
+     *
+     * @param prmJSONFactura
+     * @return objeto factura
+     *
+     */
     public clsFactura parseToFactura(String prmJSONFactura) {
         clsFactura objFactura = new clsFactura();
         Gson gson = new Gson();
@@ -106,6 +161,13 @@ public class JSONServices {
         return objFactura;
     }
 
+    /**
+     * Realiza el parse de un objeto JSON a un objeto usuario
+     *
+     * @param prmJSONUser
+     * @return objeto usuario
+     *
+     */
     public clsUsuario parseToUsuario(String prmJSONUser) {
         clsUsuario objUser = new clsUsuario();
         Gson gson = new Gson();
@@ -119,6 +181,13 @@ public class JSONServices {
         return objUser;
     }
 
+    /**
+     * Realiza el parse de un objeto JSON a un objeto vehiculo
+     *
+     * @param prmJSONVehiculo
+     * @return objeto vehiculo
+     *
+     */
     public Vehiculo parseToVehiculo(String prmJSONVehiculo) {
         Vehiculo objVehiculo = new Vehiculo();
         Gson gson = new Gson();
@@ -128,6 +197,13 @@ public class JSONServices {
         return objVehiculo;
     }
 
+    /**
+     * Realiza el parse de un objeto JSON a una lista de parqueadero
+     *
+     * @param prmJSONParqueadero
+     * @return lista de parqueaderos
+     *
+     */
     public List<Parqueadero> parseToParqueaderos(String prmJSONParqueadero) {
         List<Parqueadero> objParqueaderos = new ArrayList();
         int i = 1;
@@ -144,6 +220,13 @@ public class JSONServices {
         return objParqueaderos;
     }
 
+    /**
+     * Realiza el parse de un objeto JSON a un objeto parqueadero
+     *
+     * @param prmJSONParqueadero
+     * @return objeto parqueadero
+     *
+     */
     public Parqueadero parseToParqueadero(String prmJSONParqueadero) {
         Parqueadero objParqueadero = new Parqueadero();
         Gson gson = new Gson();
@@ -155,6 +238,13 @@ public class JSONServices {
         return objParqueadero;
     }
 
+    /**
+     * Realiza el parse de un objeto JSON a un objeto registro parqueo
+     *
+     * @param prmJSONRegistro
+     * @return objeto registro parqueo
+     *
+     */
     public clsRegistroParqueo parseToRegistroParqueo(String prmJSONRegistro) {
         clsRegistroParqueo objRegistro = new clsRegistroParqueo();
         Gson gson = new Gson();
@@ -169,7 +259,7 @@ public class JSONServices {
         objRegistro.setNumeroCasillero(properties.getProperty("NumeroCasillero"));
         objRegistro.setDejaLlaves(properties.getProperty("DejaLlaves"));
         objRegistro.setAtrObservaciones(properties.getProperty("Observaciones"));
-        objRegistro.setAtrIdParqueadero(properties.getProperty("IdParqueadero"));        
+        objRegistro.setAtrIdParqueadero(properties.getProperty("IdParqueadero"));
         objRegistro.setEntregaFicha(properties.getProperty("EntregaFicha"));
         objRegistro.setIdRegistroParqueo(properties.getProperty("IdRegistro"));
         return objRegistro;

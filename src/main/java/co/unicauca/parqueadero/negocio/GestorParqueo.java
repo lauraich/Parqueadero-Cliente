@@ -19,7 +19,7 @@ public class GestorParqueo {
     }
 
     /**
-     * registra la entrada de un cliente
+     * registra la entrada de un vehiculo
      *
      * @param registro registro de la entrada
      * @return Boolean que indica si pudo realizar el registro de la entrada
@@ -30,15 +30,41 @@ public class GestorParqueo {
         return RegistroEntrada.registrarEntrada(registro);
     }
 
+    /**
+     * registra la salida de un vehiculo
+     *
+     * @param registro registro de la salida
+     * @return Boolean que indica si pudo realizar el registro de la salida
+     * @throws java.lang.Exception la excepcio se lanza cuando no logra conexión
+     * con el servidor
+     */
     public boolean registrarSalida(clsRegistroParqueo registro) throws Exception {
         return RegistroEntrada.registrarSalida(registro);
     }
 
-    public clsRegistroParqueo buscarXplaca(String placa,String prmIdParqueadero) throws Exception {
-        return RegistroEntrada.buscarXplaca(placa,prmIdParqueadero);
+    /**
+     * busca el registro parqueo filtrando por la placa del vehiculo
+     *
+     * @param placa identificador del vehiculo
+     * @param prmIdParqueadero identificador del parqueadero
+     * @return objeto de tipo resgistro parqueo si se encuentra
+     * @throws java.lang.Exception la excepcio se lanza cuando no logra conexión
+     * con el servidor
+     */
+    public clsRegistroParqueo buscarXplaca(String placa, String prmIdParqueadero) throws Exception {
+        return RegistroEntrada.buscarXplaca(placa, prmIdParqueadero);
     }
 
-    public clsRegistroParqueo buscarXcodigo(String codigo,String prmIdParqueadero) throws Exception {
-        return RegistroEntrada.buscarXcodigo(codigo,prmIdParqueadero);
+    /**
+     * busca el registro parqueo filtrando por el codigo de barras
+     *
+     * @param codigo codigo de barras del registro
+     * @param prmIdParqueadero identificador del parqueadero
+     * @return objeto de tipo registro parqueo si se encuentra
+     * @throws java.lang.Exception la excepcio se lanza cuando no logra conexión
+     * con el servidor
+     */
+    public clsRegistroParqueo buscarXcodigo(String codigo, String prmIdParqueadero) throws Exception {
+        return RegistroEntrada.buscarXcodigo(codigo, prmIdParqueadero);
     }
 }

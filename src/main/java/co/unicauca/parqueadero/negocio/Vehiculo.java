@@ -10,8 +10,8 @@ public class Vehiculo {
     private String tipoVehiculo;
 
     public Vehiculo() {
-        placa="";
-        tipoVehiculo="";
+        placa = "";
+        tipoVehiculo = "";
     }
 
     /**

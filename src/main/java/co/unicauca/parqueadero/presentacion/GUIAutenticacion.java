@@ -230,24 +230,24 @@ public class GUIAutenticacion extends javax.swing.JFrame {
         try {
             if (!tfUsuario.getText().equals("") && !tfContraseña.getText().equals("")) {
                 if (seg.login(tfUsuario.getText().trim(), tfContraseña.getText().trim())) {
-                clsUsuario usuario = gestor.find(tfUsuario.getText().trim());
-                //TO DO cambiar metodo por uno que devuelva solo un parqueadero
-                if (cuantosParqueaderos(usuario.getAtrCedula()).size() == 1) {                    
-                    GUIPrincipal principal = new GUIPrincipal(usuario,cuantosParqueaderos(usuario.getAtrCedula()).get(0));
-                    principal.setVisible(true);
-                    //principal.pack();
-                    principal.setLocationRelativeTo(null);
-                    principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                    this.dispose();
-                } 
-                System.out.println("Usuario: " + tfUsuario.getText());
+                    clsUsuario usuario = gestor.find(tfUsuario.getText().trim());
+                    //TO DO cambiar metodo por uno que devuelva solo un parqueadero
+                    if (cuantosParqueaderos(usuario.getAtrCedula()).size() == 1) {
+                        GUIPrincipal principal = new GUIPrincipal(usuario, cuantosParqueaderos(usuario.getAtrCedula()).get(0));
+                        principal.setVisible(true);
+                        //principal.pack();
+                        principal.setLocationRelativeTo(null);
+                        principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        this.dispose();
+                    }
+                    System.out.println("Usuario: " + tfUsuario.getText());
 
+                } else {
+                    JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrecta");
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Usuario o Contraseña Incorrecta");
+                JOptionPane.showMessageDialog(null, "Los campos de Usuario y Contraseña son obligatorios");
             }
-            }else{
-                 JOptionPane.showMessageDialog(null, "Los campos de Usuario y Contraseña son obligatorios");
-            }            
         } catch (Exception e) {
         }
 
@@ -257,6 +257,12 @@ public class GUIAutenticacion extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnloginCancelMouseClicked
 
+    /**
+     * Devuelve los parqueaderos en los cuales cierto usuario trabaja
+     *
+     * @param cedula identificador del usuario
+     * @return list lista de parqueaderos
+     */
     public List<Parqueadero> cuantosParqueaderos(String cedula) {
         try {
             GestorParqueadero gestorParq = new GestorParqueadero();

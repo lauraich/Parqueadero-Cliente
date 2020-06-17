@@ -1,21 +1,30 @@
-
 package co.unicauca.parqueadero.negocio;
 
 /**
+ * Representa una factura en la base de datos
  *
- * @author Usuario
  */
 public class clsFactura {
-    
-    private String idFacturacion="";
-    private String valorApagar="";
-    private String idRegistroParqueo="";
 
+    private String idFacturacion = "";
+    private String valorApagar = "";
+    private String idRegistroParqueo = "";
+
+    /**
+     * Constructor no parametrizado
+     *
+     */
     public clsFactura() {
-        
+
     }
 
-    public clsFactura(String prmValorApagar,String prmIdRegistroParqueo) {
+    /**
+     * Constructor parametrizado
+     *
+     * @param prmValorApagar valor que debe pagar el usuario
+     * @param prmIdRegistroParqueo identificador de un registro parqueo
+     */
+    public clsFactura(String prmValorApagar, String prmIdRegistroParqueo) {
         this.valorApagar = prmValorApagar;
         this.idRegistroParqueo = prmIdRegistroParqueo;
     }
@@ -47,5 +56,5 @@ public class clsFactura {
     public void setValorApagar(String valor) {
         this.valorApagar = valor;
     }
-        
+
 }

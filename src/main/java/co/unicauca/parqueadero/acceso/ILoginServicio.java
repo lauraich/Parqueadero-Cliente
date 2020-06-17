@@ -14,5 +14,6 @@ import co.unicauca.parqueadero.negocio.clsUsuario;
 public interface ILoginServicio {
 
     public boolean login(String usuario, String contraseña) throws Exception;
+
     public clsUsuario find(String login) throws Exception;
 }
