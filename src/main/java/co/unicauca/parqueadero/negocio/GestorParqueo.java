@@ -9,13 +9,13 @@ import co.unicauca.parqueadero.acceso.IRegistroParqueo;
  */
 public class GestorParqueo {
 
-    IRegistroParqueo RegistroEntrada;
+    IRegistroParqueo RegistroParqueo;
 
     /**
      * Constructor
      */
     public GestorParqueo() {
-        RegistroEntrada = new ParqueoServicioImplSockets();
+        RegistroParqueo = new ParqueoServicioImplSockets();
     }
 
     /**
@@ -27,7 +27,7 @@ public class GestorParqueo {
      * con el servidor
      */
     public boolean registrarEntrada(clsRegistroParqueo registro) throws Exception {
-        return RegistroEntrada.registrarEntrada(registro);
+        return RegistroParqueo.registrarEntrada(registro);
     }
 
     /**
@@ -39,7 +39,7 @@ public class GestorParqueo {
      * con el servidor
      */
     public boolean registrarSalida(clsRegistroParqueo registro) throws Exception {
-        return RegistroEntrada.registrarSalida(registro);
+        return RegistroParqueo.registrarSalida(registro);
     }
 
     /**
@@ -52,7 +52,7 @@ public class GestorParqueo {
      * con el servidor
      */
     public clsRegistroParqueo buscarXplaca(String placa, String prmIdParqueadero) throws Exception {
-        return RegistroEntrada.buscarXplaca(placa, prmIdParqueadero);
+        return RegistroParqueo.buscarXplaca(placa, prmIdParqueadero);
     }
 
     /**
@@ -65,6 +65,6 @@ public class GestorParqueo {
      * con el servidor
      */
     public clsRegistroParqueo buscarXcodigo(String codigo, String prmIdParqueadero) throws Exception {
-        return RegistroEntrada.buscarXcodigo(codigo, prmIdParqueadero);
+        return RegistroParqueo.buscarXcodigo(codigo, prmIdParqueadero);
     }
 }
