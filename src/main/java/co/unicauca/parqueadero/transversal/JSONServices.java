@@ -26,7 +26,35 @@ public class JSONServices {
         }
         return atrParseToJSON;
     }
+     /**
+     * Convierte a JSON una lista de estadisticas.
+     *
+     * @param prmEstadisticas Lista de estadisticas
+     * @return
+     */
+    public String parseToJSONE(List<clsEstadisticas> prmEstadisticas) {
+        JsonObject jsonObj = new JsonObject();
+        int i = 1;
+        for (clsEstadisticas objEstadistica : prmEstadisticas) {
+            jsonObj.addProperty(String.valueOf(i), parseToJSON(objEstadistica));
+            System.out.println("Objeto: " + jsonObj.toString());
+            i++;
+        }
+        return jsonObj.toString();
+    }
 
+    /**
+     * Convierte a JSON un objeto de estadisticas.
+     *
+     * @param prmEstadistica Lista de estadisticas
+     * @return
+     */
+    public String parseToJSON(clsEstadisticas prmEstadistica) {
+        JsonObject jsonObj = new JsonObject();
+        jsonObj.addProperty("Hora", prmEstadistica.getHora());
+        jsonObj.addProperty("NumeroIngresos", prmEstadistica.getNumeroEntradas());
+        return jsonObj.toString();
+    }
     /**
      * Realiza el parse de una lista de parqueaderos a un objeto JSON
      *
@@ -237,7 +265,42 @@ public class JSONServices {
         objParqueadero.setId(properties.getProperty("IDParqueadero"));
         return objParqueadero;
     }
-
+    /**
+     * Descerializa una lista de estadisticas en JSON
+     *
+     * @param prmJSONEstadisticas Lista estadisticas en JSON
+     * @return Lista Estadisticas
+     */
+    public List<clsEstadisticas> parseToEstadisticas(String prmJSONEstadisticas) {
+        List<clsEstadisticas> objEstadistica = new ArrayList();
+        int i = 1;
+        try {
+            Gson gson = new Gson();
+            Properties properties = gson.fromJson(prmJSONEstadisticas, Properties.class);
+            while (true) {
+                objEstadistica.add(parseToEstadistica(properties.getProperty(String.valueOf(i))));
+                i++;
+            }
+        } catch (Exception e) {
+            System.out.println("Eror: " + e.getMessage());
+        }
+        return objEstadistica;
+    }
+     /**
+     * Descerializa una estadistica JSON
+     *
+     * @param prmJSONEstadistica Estadistica JSON
+     * @return Objeto estadistica
+     */
+    public clsEstadisticas parseToEstadistica(String prmJSONEstadistica) {
+        clsEstadisticas objEstadistica = new clsEstadisticas();
+        Gson gson = new Gson();
+        Properties properties = gson.fromJson(prmJSONEstadistica, Properties.class);
+        objEstadistica.setHora(properties.getProperty("Hora"));
+        objEstadistica.setNumeroEntradas(properties.getProperty("NumeroIngresos"));
+        return objEstadistica;
+    }
+    
     /**
      * Realiza el parse de un objeto JSON a un objeto registro parqueo
      *

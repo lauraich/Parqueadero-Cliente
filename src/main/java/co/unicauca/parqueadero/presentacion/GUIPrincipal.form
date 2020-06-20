@@ -48,10 +48,10 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="btnAgregarFuncionarios" alignment="0" pref="268" max="32767" attributes="0"/>
+                                  <Component id="btnEstadisticas" alignment="0" pref="268" max="32767" attributes="0"/>
                                   <Component id="btnAgregarParqueadero" alignment="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="btnAjustes" alignment="0" min="-2" pref="268" max="-2" attributes="0"/>
+                              <Component id="btnAgregarFuncionarios" alignment="0" min="-2" pref="268" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -74,9 +74,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnAgregarParqueadero" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnAgregarFuncionarios" min="-2" pref="67" max="-2" attributes="0"/>
+                  <Component id="btnEstadisticas" min="-2" pref="67" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btnAjustes" min="-2" pref="57" max="-2" attributes="0"/>
+                  <Component id="btnAgregarFuncionarios" min="-2" pref="57" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnCerrarSesion" min="-2" pref="57" max="-2" attributes="0"/>
                   <EmptySpace pref="129" max="32767" attributes="0"/>
@@ -146,24 +146,27 @@
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAgregarParqueaderoMouseClicked"/>
           </Events>
         </Component>
+        <Component class="rojerusan.RSButtonMetro" name="btnEstadisticas">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="62" green="3d" red="a" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="      Estad&#xed;sticas"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="0"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEstadisticasMouseClicked"/>
+          </Events>
+        </Component>
         <Component class="rojerusan.RSButtonMetro" name="btnAgregarFuncionarios">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="62" green="3d" red="a" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="      Agregar Funcionarios"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="18" style="0"/>
-            </Property>
-            <Property name="horizontalAlignment" type="int" value="2"/>
-          </Properties>
-        </Component>
-        <Component class="rojerusan.RSButtonMetro" name="btnAjustes">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="62" green="3d" red="a" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="      Ajustes"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
             </Property>

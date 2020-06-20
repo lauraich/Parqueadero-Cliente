@@ -59,8 +59,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
         lblParqueadero = new javax.swing.JLabel();
         btnRegistrar = new rojerusan.RSButtonMetro();
         btnAgregarParqueadero = new rojerusan.RSButtonMetro();
+        btnEstadisticas = new rojerusan.RSButtonMetro();
         btnAgregarFuncionarios = new rojerusan.RSButtonMetro();
-        btnAjustes = new rojerusan.RSButtonMetro();
         btnCerrarSesion = new rojerusan.RSButtonMetro();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -104,15 +104,20 @@ public class GUIPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnEstadisticas.setBackground(new java.awt.Color(10, 61, 98));
+        btnEstadisticas.setText("      Estadísticas");
+        btnEstadisticas.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnEstadisticas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnEstadisticas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEstadisticasMouseClicked(evt);
+            }
+        });
+
         btnAgregarFuncionarios.setBackground(new java.awt.Color(10, 61, 98));
         btnAgregarFuncionarios.setText("      Agregar Funcionarios");
         btnAgregarFuncionarios.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnAgregarFuncionarios.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-
-        btnAjustes.setBackground(new java.awt.Color(10, 61, 98));
-        btnAjustes.setText("      Ajustes");
-        btnAjustes.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnAjustes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         btnCerrarSesion.setBackground(new java.awt.Color(10, 61, 98));
         btnCerrarSesion.setText("      Cerrar Sesión");
@@ -135,9 +140,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnAgregarFuncionarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                                .addComponent(btnEstadisticas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
                                 .addComponent(btnAgregarParqueadero, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(btnAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnAgregarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(lblParqueadero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPrincipal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -155,9 +160,9 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAgregarParqueadero, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAgregarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEstadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAgregarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(129, Short.MAX_VALUE))
@@ -192,13 +197,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
         if (usuario.getAtrRol().equals("Funcionario")) {
             btnAgregarParqueadero.setVisible(false);
             btnAgregarFuncionarios.setVisible(false);
-            btnAjustes.setAlignmentX(btnAgregarParqueadero.getAlignmentX());
-            btnAjustes.setAlignmentY(btnAgregarParqueadero.getAlignmentY());
-            btnCerrarSesion.setAlignmentX(btnAgregarFuncionarios.getAlignmentX());
-            btnCerrarSesion.setAlignmentY(btnAgregarFuncionarios.getAlignmentY());
+            btnEstadisticas.setAlignmentX(btnAgregarParqueadero.getAlignmentX());
+            btnEstadisticas.setAlignmentY(btnAgregarParqueadero.getAlignmentY());
+            btnCerrarSesion.setAlignmentX(btnEstadisticas.getAlignmentX());
+            btnCerrarSesion.setAlignmentY(btnEstadisticas.getAlignmentY());
         }
     }
-    
+
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
         GUIRegistrarParqueo registrar = new GUIRegistrarParqueo(usuario, parqueadero);
         registrar.setVisible(true);
@@ -223,6 +228,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         login.setLocationRelativeTo(null);
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }//GEN-LAST:event_btnCerrarSesionMouseClicked
+
+    private void btnEstadisticasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadisticasMouseClicked
+        GUIEstadisticas estadisticas = new GUIEstadisticas(usuario,parqueadero);
+        estadisticas.setVisible(true);
+        estadisticas.pack();
+        estadisticas.setLocationRelativeTo(null);
+        estadisticas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }//GEN-LAST:event_btnEstadisticasMouseClicked
 
     /**
      * @param args the command line arguments
@@ -263,8 +276,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private rojerusan.RSButtonMetro btnAgregarFuncionarios;
     private rojerusan.RSButtonMetro btnAgregarParqueadero;
-    private rojerusan.RSButtonMetro btnAjustes;
     private rojerusan.RSButtonMetro btnCerrarSesion;
+    private rojerusan.RSButtonMetro btnEstadisticas;
     private rojerusan.RSButtonMetro btnRegistrar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
