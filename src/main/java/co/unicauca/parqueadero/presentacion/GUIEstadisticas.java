@@ -94,7 +94,7 @@ public class GUIEstadisticas extends javax.swing.JFrame {
         lblnum19 = new javax.swing.JLabel();
         btnOk = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         pnlEstadisticasHead.setBackground(new java.awt.Color(250, 152, 58));

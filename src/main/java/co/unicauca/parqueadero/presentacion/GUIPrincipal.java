@@ -9,6 +9,7 @@ import co.unicauca.parqueadero.negocio.Parqueadero;
 import co.unicauca.parqueadero.negocio.clsUsuario;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * Interfaz gráfica Principal
@@ -118,6 +119,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         btnAgregarFuncionarios.setText("      Agregar Funcionarios");
         btnAgregarFuncionarios.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnAgregarFuncionarios.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAgregarFuncionarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAgregarFuncionariosMouseClicked(evt);
+            }
+        });
 
         btnCerrarSesion.setBackground(new java.awt.Color(10, 61, 98));
         btnCerrarSesion.setText("      Cerrar Sesión");
@@ -209,7 +215,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         registrar.setVisible(true);
         registrar.pack();
         registrar.setLocationRelativeTo(null);
-        registrar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        registrar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btnRegistrarMouseClicked
 
     private void btnAgregarParqueaderoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarParqueaderoMouseClicked
@@ -217,7 +223,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         registrar.setVisible(true);
         registrar.pack();
         registrar.setLocationRelativeTo(null);
-        registrar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        registrar.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btnAgregarParqueaderoMouseClicked
 
     private void btnCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarSesionMouseClicked
@@ -226,7 +232,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         login.setVisible(true);
         login.pack();
         login.setLocationRelativeTo(null);
-        login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        login.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btnCerrarSesionMouseClicked
 
     private void btnEstadisticasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadisticasMouseClicked
@@ -234,8 +240,12 @@ public class GUIPrincipal extends javax.swing.JFrame {
         estadisticas.setVisible(true);
         estadisticas.pack();
         estadisticas.setLocationRelativeTo(null);
-        estadisticas.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        estadisticas.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_btnEstadisticasMouseClicked
+
+    private void btnAgregarFuncionariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarFuncionariosMouseClicked
+       JOptionPane.showMessageDialog(null, "En desarrollo...");
+    }//GEN-LAST:event_btnAgregarFuncionariosMouseClicked
 
     /**
      * @param args the command line arguments
