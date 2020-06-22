@@ -230,7 +230,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionMouseClicked
 
     private void btnEstadisticasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadisticasMouseClicked
-        GUIEstadisticas estadisticas = new GUIEstadisticas(usuario,parqueadero);
+        GUIEstadisticas estadisticas = new GUIEstadisticas(usuario, parqueadero);
         estadisticas.setVisible(true);
         estadisticas.pack();
         estadisticas.setLocationRelativeTo(null);

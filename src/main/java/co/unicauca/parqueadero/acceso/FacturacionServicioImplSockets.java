@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.parqueadero.acceso;
 
 import co.unicauca.parqueadero.negocio.clsFactura;
-import co.unicauca.parqueadero.negocio.clsRegistroParqueo;
 import co.unicauca.parqueadero.transversal.JSONServices;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -16,8 +10,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Clase que implementa los servicios . Para ello utiliza conexiones con sockets
  *
- * @author Usuario
  */
 public class FacturacionServicioImplSockets implements IFacturacionServicio {
 
@@ -63,13 +57,13 @@ public class FacturacionServicioImplSockets implements IFacturacionServicio {
      * @return String
      * @throws IOException
      */
-    private String leerFlujoEntradaSalida(String metodo, String prmTipoVehiculo, String prmDias, String prmHoras, String prmMinutos,String prmSegundos) throws IOException {
+    private String leerFlujoEntradaSalida(String metodo, String prmTipoVehiculo, String prmDias, String prmHoras, String prmMinutos, String prmSegundos) throws IOException {
         String respuesta = "";
         entradaDecorada = new Scanner(socket.getInputStream());
         salidaDecorada = new PrintStream(socket.getOutputStream());
         salidaDecorada.flush();
         // Usando el protocolo de comunicación
-        salidaDecorada.println(metodo + prmTipoVehiculo + "|" + prmDias + "|" + prmHoras + "|" + prmMinutos+ "|"+ prmSegundos);
+        salidaDecorada.println(metodo + prmTipoVehiculo + "|" + prmDias + "|" + prmHoras + "|" + prmMinutos + "|" + prmSegundos);
         if (entradaDecorada.hasNextLine()) {
             respuesta = entradaDecorada.nextLine();
         }
@@ -120,11 +114,11 @@ public class FacturacionServicioImplSockets implements IFacturacionServicio {
      * @throws Exception
      */
     @Override
-    public String totalPagar(String prmTipoVehiculo, String prmDias, String prmHoras, String prmMinutos,String prmSegundos) throws Exception {
+    public String totalPagar(String prmTipoVehiculo, String prmDias, String prmHoras, String prmMinutos, String prmSegundos) throws Exception {
         String jsonCliente = null;
         try {
             conectar(IP_SERVIDOR, PUERTO);
-            jsonCliente = leerFlujoEntradaSalida("valorApagar|", prmTipoVehiculo, prmDias, prmHoras, prmMinutos,prmSegundos);
+            jsonCliente = leerFlujoEntradaSalida("valorApagar|", prmTipoVehiculo, prmDias, prmHoras, prmMinutos, prmSegundos);
             cerrarFlujos();
             desconectar();
 

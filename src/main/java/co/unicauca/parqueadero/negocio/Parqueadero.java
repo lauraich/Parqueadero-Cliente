@@ -10,6 +10,8 @@ public class Parqueadero {
     private String direccion;
     private String telefono;
     private String atrId;
+    private String puestosDisponiblesCarro;
+    private String puestosDisponiblesMoto;
 
     /**
      * Constructor no parametrizado
@@ -21,6 +23,8 @@ public class Parqueadero {
         this.direccion = "";
         this.telefono = "";
         atrId = "";
+        puestosDisponiblesCarro = "";
+        puestosDisponiblesMoto = "";
     }
 
     /**
@@ -34,6 +38,22 @@ public class Parqueadero {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
+    }
+
+    public String getPuestosDisponiblesMoto() {
+        return puestosDisponiblesMoto;
+    }
+
+    public void setPuestosDisponiblesMoto(String puestosDisponiblesMoto) {
+        this.puestosDisponiblesMoto = puestosDisponiblesMoto;
+    }
+
+    public String getPuestosDisponiblesCarro() {
+        return puestosDisponiblesCarro;
+    }
+
+    public void setPuestosDisponiblesCarro(String puestosDisponibles) {
+        this.puestosDisponiblesCarro = puestosDisponibles;
     }
 
     public String getId() {

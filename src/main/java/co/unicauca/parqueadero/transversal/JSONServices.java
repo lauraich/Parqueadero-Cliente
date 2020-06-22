@@ -26,7 +26,8 @@ public class JSONServices {
         }
         return atrParseToJSON;
     }
-     /**
+
+    /**
      * Convierte a JSON una lista de estadisticas.
      *
      * @param prmEstadisticas Lista de estadisticas
@@ -55,6 +56,7 @@ public class JSONServices {
         jsonObj.addProperty("NumeroIngresos", prmEstadistica.getNumeroEntradas());
         return jsonObj.toString();
     }
+
     /**
      * Realiza el parse de una lista de parqueaderos a un objeto JSON
      *
@@ -97,6 +99,8 @@ public class JSONServices {
         jsonObj.addProperty("Direccion", prmParqueadero.getDireccion());
         jsonObj.addProperty("Telefono", prmParqueadero.getTelefono());
         jsonObj.addProperty("IDParqueadero", prmParqueadero.getId());
+        jsonObj.addProperty("DisponiblesCarro", prmParqueadero.getPuestosDisponiblesCarro());
+        jsonObj.addProperty("DisponiblesMoto", prmParqueadero.getPuestosDisponiblesMoto());
         return jsonObj;
     }
 
@@ -263,8 +267,11 @@ public class JSONServices {
         objParqueadero.setDireccion(properties.getProperty("Direccion"));
         objParqueadero.setTelefono(properties.getProperty("Telefono"));
         objParqueadero.setId(properties.getProperty("IDParqueadero"));
+        objParqueadero.setPuestosDisponiblesCarro(properties.getProperty("DisponiblesCarro"));
+        objParqueadero.setPuestosDisponiblesMoto(properties.getProperty("DisponiblesMoto"));
         return objParqueadero;
     }
+
     /**
      * Descerializa una lista de estadisticas en JSON
      *
@@ -286,7 +293,8 @@ public class JSONServices {
         }
         return objEstadistica;
     }
-     /**
+
+    /**
      * Descerializa una estadistica JSON
      *
      * @param prmJSONEstadistica Estadistica JSON
@@ -300,7 +308,7 @@ public class JSONServices {
         objEstadistica.setNumeroEntradas(properties.getProperty("NumeroIngresos"));
         return objEstadistica;
     }
-    
+
     /**
      * Realiza el parse de un objeto JSON a un objeto registro parqueo
      *

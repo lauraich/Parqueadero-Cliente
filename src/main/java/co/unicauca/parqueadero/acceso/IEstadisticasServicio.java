@@ -9,9 +9,10 @@ import co.unicauca.parqueadero.negocio.clsEstadisticas;
 import java.util.List;
 
 /**
+ * Interface que define los servicios con el servidor
  *
- * @author Usuario
  */
 public interface IEstadisticasServicio {
-    public List<clsEstadisticas> generarEstadisticas(String fecha,String idParqueadero)throws Exception;
+
+    public List<clsEstadisticas> generarEstadisticas(String fecha, String idParqueadero) throws Exception;
 }

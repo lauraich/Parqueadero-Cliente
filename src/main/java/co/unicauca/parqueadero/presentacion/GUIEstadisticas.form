@@ -287,66 +287,79 @@
           <SubComponents>
             <Component class="javax.swing.JProgressBar" name="pb19">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb7">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb8">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb9">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb10">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb11">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb12">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb13">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb14">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb15">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb16">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb17">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JProgressBar" name="pb18">
               <Properties>
+                <Property name="maximum" type="int" value="50"/>
                 <Property name="orientation" type="int" value="1"/>
               </Properties>
             </Component>

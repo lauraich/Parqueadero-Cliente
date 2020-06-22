@@ -154,28 +154,7 @@ public class GUIRegistrarParqueadero extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarParqCancelMouseClicked
 
     private void btnRegistrarParqueaderoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarParqueaderoMouseClicked
-        String nombre = tfNombre.getText().trim();
-        String direccion = tfDireccion.getText().trim();
-        String telefono = tfTelefono.getText().trim();
-        String usuario = tfUsuario.getText().trim();
-        String contraseña = tfContraseña.getText().trim();
-        Seguridad seg = new Seguridad();
-        GestorParqueadero gestor = new GestorParqueadero();
-        try {
-            if (!nombre.equals("") && !direccion.equals("") && !telefono.equals("") && !usuario.equals("") && !contraseña.equals("")) {
-                if (seg.login(usuario, contraseña)) {
-                   if( gestor.create(new Parqueadero(nombre,direccion,telefono))){
-                        JOptionPane.showMessageDialog(null, "Parqueadero Registrado Correctamente");
-                   }
-                }else{
-                     JOptionPane.showMessageDialog(null, "Usuario administrador Invalido");
-                }
-            }else{
-                 JOptionPane.showMessageDialog(null, "Debe diligenciar el formulario correctamente");
-            }
-        } catch (Exception e) {
-        }
-
+        JOptionPane.showMessageDialog(null, "Por desarrollar...");
     }//GEN-LAST:event_btnRegistrarParqueaderoMouseClicked
 
     /**

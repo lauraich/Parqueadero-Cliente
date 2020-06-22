@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.unicauca.parqueadero.acceso;
 
 import co.unicauca.parqueadero.negocio.clsEstadisticas;
@@ -16,32 +11,33 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Clase que implementa los servicios . Para ello utiliza conexiones con sockets
  *
- * @author Usuario
  */
-public class EstadisticasServicioImplSockets implements IEstadisticasServicio{
-     private Socket socket = null;
+public class EstadisticasServicioImplSockets implements IEstadisticasServicio {
+
+    private Socket socket = null;
     private Scanner entradaDecorada;
     private PrintStream salidaDecorada;
     private final String IP_SERVIDOR = "localhost";
     private final int PUERTO = 5000;
     private JSONServices atrParse = JSONServices.getInstancia();
 
-    /**
-     * Lee el flujo del socket y lo convierte a String
-     *
-     * @param metodo metodo del servidor a usar
-     * @param parametro parametro que reciba el metodo
-     * @return String
-     * @throws IOException
-     */
+   /**
+    * Lee el flujo del socket y lo convierte a String
+    * @param metodo metodo a utilizar del servidor
+    * @param prmFecha fecha en la cual se quieren consultar los registros
+    * @param prmIdParqueadero id del parqueadero del cual se quieren consultar los registros
+    * @return String respuesta del servidor
+    * @throws IOException 
+    */
     private String leerFlujoEntradaSalida(String metodo, String prmFecha, String prmIdParqueadero) throws IOException {
         String respuesta = "";
         entradaDecorada = new Scanner(socket.getInputStream());
         salidaDecorada = new PrintStream(socket.getOutputStream());
         salidaDecorada.flush();
         // Usando el protocolo de comunicación
-        salidaDecorada.println(metodo + prmFecha +"|" + prmIdParqueadero );
+        salidaDecorada.println(metodo + prmFecha + "|" + prmIdParqueadero);
         if (entradaDecorada.hasNextLine()) {
             respuesta = entradaDecorada.nextLine();
         }
@@ -79,13 +75,21 @@ public class EstadisticasServicioImplSockets implements IEstadisticasServicio{
         socket = new Socket(address, port);
         System.out.println("Conectado");
     }
+
+    /**
+     * Recoge los datos de ingresos por hora del parqueadero
+     *
+     * @param fecha
+     * @param idParqueadero
+     * @return lista de estadisticas
+     * @throws Exception
+     */
     @Override
-    
     public List<clsEstadisticas> generarEstadisticas(String fecha, String idParqueadero) throws Exception {
-       String jsonCliente = null;
+        String jsonCliente = null;
         try {
             conectar(IP_SERVIDOR, PUERTO);
-            jsonCliente = leerFlujoEntradaSalida("afluencia|",fecha,idParqueadero);
+            jsonCliente = leerFlujoEntradaSalida("afluencia|", fecha, idParqueadero);
             cerrarFlujos();
             desconectar();
 
@@ -104,5 +108,5 @@ public class EstadisticasServicioImplSockets implements IEstadisticasServicio{
         }
         return null;
     }
-    
+
 }

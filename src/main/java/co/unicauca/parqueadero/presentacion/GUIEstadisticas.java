@@ -11,13 +11,12 @@ import co.unicauca.parqueadero.negocio.clsEstadisticas;
 import co.unicauca.parqueadero.negocio.clsUsuario;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
+ * Interfaz gráfica de Estadísticas
  *
- * @author Usuario
  */
 public class GUIEstadisticas extends javax.swing.JFrame {
 
@@ -36,59 +35,6 @@ public class GUIEstadisticas extends javax.swing.JFrame {
         atrUsuario = usuario;
         atrParqueadero = Parqueadero;
         this.setLocationRelativeTo(null);
-        
-    }
-
-    public void desplegarEstadisticas() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String fecha = dateFormat.format(jDateChooser1.getDate());
-        GestorEstadisticas gestor = new GestorEstadisticas();
-        try {
-            List<clsEstadisticas> listEstadistica = gestor.generarEstadisticas(fecha, atrParqueadero.getId());
-            for (clsEstadisticas estadisticas : listEstadistica) {
-                if (estadisticas.getHora().equals("7")) {
-                    pb7.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("8")) {
-                    pb8.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("9")) {
-                    pb9.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("10")) {
-                    pb10.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("11")) {
-                    pb11.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("12")) {
-                    pb12.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("13")) {
-                    pb13.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("14")) {
-                    pb14.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("15")) {
-                    pb15.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("16")) {
-                    pb16.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("17")) {
-                    pb17.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("18")) {
-                    pb18.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-                if (estadisticas.getHora().equals("19")) {
-                    pb19.setValue((Integer.parseInt(estadisticas.getNumeroEntradas())*100)/50);
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo realizar el despliegue de las estadisticas.");
-        }
 
     }
 
@@ -159,30 +105,43 @@ public class GUIEstadisticas extends javax.swing.JFrame {
 
         pnlEstadisticasBody.setBackground(new java.awt.Color(10, 61, 98));
 
+        pb19.setMaximum(50);
         pb19.setOrientation(1);
 
+        pb7.setMaximum(50);
         pb7.setOrientation(1);
 
+        pb8.setMaximum(50);
         pb8.setOrientation(1);
 
+        pb9.setMaximum(50);
         pb9.setOrientation(1);
 
+        pb10.setMaximum(50);
         pb10.setOrientation(1);
 
+        pb11.setMaximum(50);
         pb11.setOrientation(1);
 
+        pb12.setMaximum(50);
         pb12.setOrientation(1);
 
+        pb13.setMaximum(50);
         pb13.setOrientation(1);
 
+        pb14.setMaximum(50);
         pb14.setOrientation(1);
 
+        pb15.setMaximum(50);
         pb15.setOrientation(1);
 
+        pb16.setMaximum(50);
         pb16.setOrientation(1);
 
+        pb17.setMaximum(50);
         pb17.setOrientation(1);
 
+        pb18.setMaximum(50);
         pb18.setOrientation(1);
 
         lbl11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -506,13 +465,118 @@ public class GUIEstadisticas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOkMouseClicked
-        if (!jDateChooser1.getDateFormatString().equals("")) {
+        if (!jDateChooser1.getDateFormatString().equals("") && jDateChooser1.getDate()!=null) {
+            limpiar();
             desplegarEstadisticas();
-        }else{
-             JOptionPane.showMessageDialog(null, "Se debe ingresar una fecha.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Se debe ingresar una fecha.");
+            limpiar();
         }
-        
+
     }//GEN-LAST:event_btnOkMouseClicked
+
+    /**
+     * limpia los valores de las barras
+     */
+    private void limpiar() {
+        lblnum7.setText("0");
+        lblnum8.setText("0");
+        lblnum9.setText("0");
+        lblnum10.setText("0");
+        lblnum11.setText("0");
+        lblnum12.setText("0");
+        lblnum13.setText("0");
+        lblnum14.setText("0");
+        lblnum15.setText("0");
+        lblnum16.setText("0");
+        lblnum17.setText("0");
+        lblnum18.setText("0");
+        lblnum19.setText("0");
+        pb7.setValue(0);
+        pb8.setValue(0);
+        pb9.setValue(0);
+        pb10.setValue(0);
+        pb11.setValue(0);
+        pb12.setValue(0);
+        pb13.setValue(0);
+        pb14.setValue(0);
+        pb15.setValue(0);
+        pb16.setValue(0);
+        pb17.setValue(0);
+        pb18.setValue(0);
+        pb19.setValue(0);
+    }
+
+    /**
+     * Muestra los valores obtenidos en las gráficas de barras
+     */
+    private void desplegarEstadisticas() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String fecha = dateFormat.format(jDateChooser1.getDate());
+        GestorEstadisticas gestor = new GestorEstadisticas();
+        int total = Integer.parseInt(atrParqueadero.getPuestosDisponiblesCarro())
+                + Integer.parseInt(atrParqueadero.getPuestosDisponiblesMoto());
+        try {
+            List<clsEstadisticas> listEstadistica = gestor.generarEstadisticas(fecha, atrParqueadero.getId());
+            for (clsEstadisticas estadisticas : listEstadistica) {
+                if (estadisticas.getHora().equals("7")) {
+                    lblnum7.setText(estadisticas.getNumeroEntradas());
+                    pb7.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("8")) {
+                    lblnum8.setText(estadisticas.getNumeroEntradas());
+                    pb8.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("9")) {
+                    lblnum9.setText(estadisticas.getNumeroEntradas());
+                    pb9.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("10")) {
+                    lblnum10.setText(estadisticas.getNumeroEntradas());
+                    pb10.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("11")) {
+                    lblnum11.setText(estadisticas.getNumeroEntradas());
+                    pb11.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("12")) {
+                    lblnum12.setText(estadisticas.getNumeroEntradas());
+                    pb12.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("13")) {
+                    lblnum13.setText(estadisticas.getNumeroEntradas());
+                    pb13.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("14")) {
+                    lblnum14.setText(estadisticas.getNumeroEntradas());
+                    pb14.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("15")) {
+                    lblnum15.setText(estadisticas.getNumeroEntradas());
+                    pb15.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("16")) {
+                    lblnum16.setText(estadisticas.getNumeroEntradas());
+                    pb16.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("17")) {
+                    lblnum17.setText(estadisticas.getNumeroEntradas());
+                    pb17.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("18")) {
+                    lblnum18.setText(estadisticas.getNumeroEntradas());
+                    pb18.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+                if (estadisticas.getHora().equals("19")) {
+                    lblnum19.setText(estadisticas.getNumeroEntradas());
+                    pb19.setValue((Integer.parseInt(estadisticas.getNumeroEntradas()) * 100) / total);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "No se encontraron registros en la fecha indicada.");
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -550,8 +614,6 @@ public class GUIEstadisticas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnLogin1;
     private javax.swing.JButton btnOk;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel lbl10;
